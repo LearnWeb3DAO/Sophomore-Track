@@ -4,7 +4,7 @@ Hello everyone! This is the official LearnWeb3DAO Sophomore Track skill tree. �
 
 Here you will be able to further enrich your blockchain knowledge. Get deeper into blockchain concepts. Learn about gas, mining, and consensus. Get better at Solidity. Build full stack dApps, NFT collections, ICO tokens, a DAO, and a DeFi protocol.
 
-All levels are open to you. You are encouraged to complete as many levels as you can, take the skill tests, and leave feedback. Those of you who are able to graduate will receive the "**Early Contributor**" role. ✈️
+All levels are open to you. You are encouraged to complete as many levels as you can, take the skill tests, and leave feedback. ✈️
 
 # Levels
 
