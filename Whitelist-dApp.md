@@ -190,350 +190,347 @@ Save the Whitelist Contract Address that was printed on your terminal in your no
 
 ### Website
 
-- To develop the website we will use [React](https://reactjs.org/) and [Next Js](https://nextjs.org/). React is a javascript framework used to make websites and Next.js is a React framework that also allows writing backend APIs code along with the frontend, so you don't need two separate frontend and backend services.
-- First, You will need to create a new `next` app.
+To develop the website we will use [React](https://reactjs.org/) and [Next Js](https://nextjs.org/). React is a javascript framework used to make websites and Next.js is a React framework that also allows writing backend APIs code along with the frontend, so you don't need two separate frontend and backend services.
 
-- To create this `next-app`, in the terminal point to Whitelist-Dapp folder and type
+First, You will need to create a new `next` app. To create this `next-app`, in the terminal point to Whitelist-Dapp folder and type
 
-  ```bash
-  npx create-next-app@latest
-  ```
+```bash
+npx create-next-app@latest
+```
 
-  and press `enter` for all the questions
+and press `enter` for all the questions
 
-- Your folder structure should look something like
+Your folder structure should look something like
 
-  ```
-  - Whitelist-Dapp
-      - hardhat-tutorial
-      - my-app
-  ```
+```
+- Whitelist-Dapp
+    - hardhat-tutorial
+    - my-app
+```
 
-- Now to run the app, execute these commands in the terminal
+Now to run the app, execute these commands in the terminal
 
-  ```
-  cd my-app
-  npm run dev
-  ```
+```
+cd my-app
+npm run dev
+```
 
-- Now go to `http://localhost:3000`, your app should be running 🤘
+Now go to `http://localhost:3000`, your app should be running 🤘
 
-- Now lets install [Web3Modal library](https://github.com/Web3Modal/web3modal). Web3Modal is an easy to use library to help developers easily allow their users to connect to your dApps with all sorts of different wallets. By default Web3Modal Library supports injected providers like (Metamask, Dapper, Gnosis Safe, Frame, Web3 Browsers, etc) and WalletConnect, You can also easily configure the library to support Portis, Fortmatic, Squarelink, Torus, Authereum, D'CENT Wallet and Arkane.
-  (Here's a live example on [Codesandbox.io](https://codesandbox.io/s/j43b10))
+Now lets install [Web3Modal library](https://github.com/Web3Modal/web3modal). Web3Modal is an easy to use library to help developers easily allow their users to connect to your dApps with all sorts of different wallets. By default Web3Modal Library supports injected providers like (Metamask, Dapper, Gnosis Safe, Frame, Web3 Browsers, etc) and WalletConnect, You can also easily configure the library to support Portis, Fortmatic, Squarelink, Torus, Authereum, D'CENT Wallet and Arkane.
+(Here's a live example on [Codesandbox.io](https://codesandbox.io/s/j43b10))
 
-- Open up a terminal pointing at`my-app` directory and execute this command
+Open up a terminal pointing at`my-app` directory and execute this command
 
-  ```bash
-  npm install web3modal
-  ```
+```bash
+npm install web3modal
+```
 
-- In the same terminal also install `ethers.js`
+In the same terminal also install `ethers.js`
 
-  ```bash
-  npm install ethers
-  ```
+```bash
+npm install ethers
+```
 
-- In your my-app/public folder, download [this image](https://github.com/LearnWeb3DAO/Whitelist-Dapp/blob/main/my-app/public/crypto-devs.svg) and rename it to `crypto-devs.svg`
-- Now go to styles folder and replace all the contents of `Home.modules.css` file with the following code, this would add some styling to your dapp:
+In your my-app/public folder, download [this image](https://github.com/LearnWeb3DAO/Whitelist-Dapp/blob/main/my-app/public/crypto-devs.svg) and rename it to `crypto-devs.svg`
+Now go to your `styles` folder and replace all the contents of `Home.modules.css` file with the following code, this would add some styling to your dapp:
 
-  ```css
+```css
+.main {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-family: "Courier New", Courier, monospace;
+}
+
+.footer {
+  display: flex;
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 70%;
+  height: 50%;
+  margin-left: 20%;
+}
+
+.title {
+  font-size: 2rem;
+  margin: 2rem 0;
+}
+
+.description {
+  line-height: 1;
+  margin: 2rem 0;
+  font-size: 1.2rem;
+}
+
+.button {
+  border-radius: 4px;
+  background-color: blue;
+  border: none;
+  color: #ffffff;
+  font-size: 15px;
+  padding: 20px;
+  width: 200px;
+  cursor: pointer;
+  margin-bottom: 2%;
+}
+@media (max-width: 1000px) {
   .main {
-    min-height: 90vh;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-family: "Courier New", Courier, monospace;
-  }
-
-  .footer {
-    display: flex;
-    padding: 2rem 0;
-    border-top: 1px solid #eaeaea;
+    width: 100%;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
+}
+```
 
-  .image {
-    width: 70%;
-    height: 50%;
-    margin-left: 20%;
-  }
+Open your index.js file under the pages folder and paste the following code, explanation of the code can be found in the comments. Make sure you read about React and [React Hooks](https://reactjs.org/docs/hooks-overview.html), [React Hooks Tutorial](https://www.w3schools.com/react/react_hooks.asp) if you are not familiar with them.
 
-  .title {
-    font-size: 2rem;
-    margin: 2rem 0;
-  }
+```js
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import Web3Modal from "web3modal";
+import { providers, Contract } from "ethers";
+import { useEffect, useRef, useState } from "react";
+import { WHITELIST_CONTRACT_ADDRESS, abi } from "../constants";
 
-  .description {
-    line-height: 1;
-    margin: 2rem 0;
-    font-size: 1.2rem;
-  }
+export default function Home() {
+  // walletConnected keep track of whether the user's wallet is connected or not
+  const [walletConnected, setWalletConnected] = useState(false);
+  // joinedWhitelist keeps track of whether the current metamask address has joined the Whitelist or not
+  const [joinedWhitelist, setJoinedWhitelist] = useState(false);
+  // loading is set to true when we are waiting for a transaction to get mined
+  const [loading, setLoading] = useState(false);
+  // numberOfWhitelisted tracks the number of addresses's whitelisted
+  const [numberOfWhitelisted, setNumberOfWhitelisted] = useState(0);
+  // Create a reference to the Web3 Modal (used for connecting to Metamask) which persists as long as the page is open
+  const web3ModalRef = useRef();
 
-  .button {
-    border-radius: 4px;
-    background-color: blue;
-    border: none;
-    color: #ffffff;
-    font-size: 15px;
-    padding: 20px;
-    width: 200px;
-    cursor: pointer;
-    margin-bottom: 2%;
-  }
-  @media (max-width: 1000px) {
-    .main {
-      width: 100%;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+  /**
+   * Returns a Provider or Signer object representing the Ethereum RPC with or without the
+   * signing capabilities of metamask attached
+   *
+   * A `Provider` is needed to interact with the blockchain - reading transactions, reading balances, reading state, etc.
+   *
+   * A `Signer` is a special type of Provider used in case a `write` transaction needs to be made to the blockchain, which involves the connected account
+   * needing to make a digital signature to authorize the transaction being sent. Metamask exposes a Signer API to allow your website to
+   * request signatures from the user using Signer functions.
+   *
+   * @param {*} needSigner - True if you need the signer, default false otherwise
+   */
+  const getProviderOrSigner = async (needSigner = false) => {
+    // Connect to Metamask
+    // Since we store `web3Modal` as a reference, we need to access the `current` value to get access to the underlying object
+    const provider = await web3ModalRef.current.connect();
+    const web3Provider = new providers.Web3Provider(provider);
+
+    // If user is not connected to the Goerli network, let them know and throw an error
+    const { chainId } = await web3Provider.getNetwork();
+    if (chainId !== 5) {
+      window.alert("Change the network to Goerli");
+      throw new Error("Change network to Goerli");
     }
-  }
-  ```
 
-- Open your index.js file under the pages folder and paste the following code, explanation of the code can be found in the comments. Make sure you read about React and [React Hooks](https://reactjs.org/docs/hooks-overview.html), [React Hooks Tutorial](https://www.w3schools.com/react/react_hooks.asp) if you are not familiar with them.
+    if (needSigner) {
+      const signer = web3Provider.getSigner();
+      return signer;
+    }
+    return web3Provider;
+  };
 
-  ```js
-  import Head from "next/head";
-  import styles from "../styles/Home.module.css";
-  import Web3Modal from "web3modal";
-  import { providers, Contract } from "ethers";
-  import { useEffect, useRef, useState } from "react";
-  import { WHITELIST_CONTRACT_ADDRESS, abi } from "../constants";
+  /**
+   * addAddressToWhitelist: Adds the current connected address to the whitelist
+   */
+  const addAddressToWhitelist = async () => {
+    try {
+      // We need a Signer here since this is a 'write' transaction.
+      const signer = await getProviderOrSigner(true);
+      // Create a new instance of the Contract with a Signer, which allows
+      // update methods
+      const whitelistContract = new Contract(
+        WHITELIST_CONTRACT_ADDRESS,
+        abi,
+        signer
+      );
+      // call the addAddressToWhitelist from the contract
+      const tx = await whitelistContract.addAddressToWhitelist();
+      setLoading(true);
+      // wait for the transaction to get mined
+      await tx.wait();
+      setLoading(false);
+      // get the updated number of addresses in the whitelist
+      await getNumberOfWhitelisted();
+      setJoinedWhitelist(true);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-  export default function Home() {
-    // walletConnected keep track of whether the user's wallet is connected or not
-    const [walletConnected, setWalletConnected] = useState(false);
-    // joinedWhitelist keeps track of whether the current metamask address has joined the Whitelist or not
-    const [joinedWhitelist, setJoinedWhitelist] = useState(false);
-    // loading is set to true when we are waiting for a transaction to get mined
-    const [loading, setLoading] = useState(false);
-    // numberOfWhitelisted tracks the number of addresses's whitelisted
-    const [numberOfWhitelisted, setNumberOfWhitelisted] = useState(0);
-    // Create a reference to the Web3 Modal (used for connecting to Metamask) which persists as long as the page is open
-    const web3ModalRef = useRef();
+  /**
+   * getNumberOfWhitelisted:  gets the number of whitelisted addresses
+   */
+  const getNumberOfWhitelisted = async () => {
+    try {
+      // Get the provider from web3Modal, which in our case is MetaMask
+      // No need for the Signer here, as we are only reading state from the blockchain
+      const provider = await getProviderOrSigner();
+      // We connect to the Contract using a Provider, so we will only
+      // have read-only access to the Contract
+      const whitelistContract = new Contract(
+        WHITELIST_CONTRACT_ADDRESS,
+        abi,
+        provider
+      );
+      // call the numAddressesWhitelisted from the contract
+      const _numberOfWhitelisted =
+        await whitelistContract.numAddressesWhitelisted();
+      setNumberOfWhitelisted(_numberOfWhitelisted);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-    /**
-     * Returns a Provider or Signer object representing the Ethereum RPC with or without the
-     * signing capabilities of metamask attached
-     *
-     * A `Provider` is needed to interact with the blockchain - reading transactions, reading balances, reading state, etc.
-     *
-     * A `Signer` is a special type of Provider used in case a `write` transaction needs to be made to the blockchain, which involves the connected account
-     * needing to make a digital signature to authorize the transaction being sent. Metamask exposes a Signer API to allow your website to
-     * request signatures from the user using Signer functions.
-     *
-     * @param {*} needSigner - True if you need the signer, default false otherwise
-     */
-    const getProviderOrSigner = async (needSigner = false) => {
-      // Connect to Metamask
-      // Since we store `web3Modal` as a reference, we need to access the `current` value to get access to the underlying object
-      const provider = await web3ModalRef.current.connect();
-      const web3Provider = new providers.Web3Provider(provider);
+  /**
+   * checkIfAddressInWhitelist: Checks if the address is in whitelist
+   */
+  const checkIfAddressInWhitelist = async () => {
+    try {
+      // We will need the signer later to get the user's address
+      // Even though it is a read transaction, since Signers are just special kinds of Providers,
+      // We can use it in it's place
+      const signer = await getProviderOrSigner(true);
+      const whitelistContract = new Contract(
+        WHITELIST_CONTRACT_ADDRESS,
+        abi,
+        signer
+      );
+      // Get the address associated to the signer which is connected to  MetaMask
+      const address = await signer.getAddress();
+      // call the whitelistedAddresses from the contract
+      const _joinedWhitelist = await whitelistContract.whitelistedAddresses(
+        address
+      );
+      setJoinedWhitelist(_joinedWhitelist);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-      // If user is not connected to the Goerli network, let them know and throw an error
-      const { chainId } = await web3Provider.getNetwork();
-      if (chainId !== 5) {
-        window.alert("Change the network to Goerli");
-        throw new Error("Change network to Goerli");
-      }
+  /*
+    connectWallet: Connects the MetaMask wallet
+  */
+  const connectWallet = async () => {
+    try {
+      // Get the provider from web3Modal, which in our case is MetaMask
+      // When used for the first time, it prompts the user to connect their wallet
+      await getProviderOrSigner();
+      setWalletConnected(true);
 
-      if (needSigner) {
-        const signer = web3Provider.getSigner();
-        return signer;
-      }
-      return web3Provider;
-    };
+      checkIfAddressInWhitelist();
+      getNumberOfWhitelisted();
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
-    /**
-     * addAddressToWhitelist: Adds the current connected address to the whitelist
-     */
-    const addAddressToWhitelist = async () => {
-      try {
-        // We need a Signer here since this is a 'write' transaction.
-        const signer = await getProviderOrSigner(true);
-        // Create a new instance of the Contract with a Signer, which allows
-        // update methods
-        const whitelistContract = new Contract(
-          WHITELIST_CONTRACT_ADDRESS,
-          abi,
-          signer
+  /*
+    renderButton: Returns a button based on the state of the dapp
+  */
+  const renderButton = () => {
+    if (walletConnected) {
+      if (joinedWhitelist) {
+        return (
+          <div className={styles.description}>
+            Thanks for joining the Whitelist!
+          </div>
         );
-        // call the addAddressToWhitelist from the contract
-        const tx = await whitelistContract.addAddressToWhitelist();
-        setLoading(true);
-        // wait for the transaction to get mined
-        await tx.wait();
-        setLoading(false);
-        // get the updated number of addresses in the whitelist
-        await getNumberOfWhitelisted();
-        setJoinedWhitelist(true);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    /**
-     * getNumberOfWhitelisted:  gets the number of whitelisted addresses
-     */
-    const getNumberOfWhitelisted = async () => {
-      try {
-        // Get the provider from web3Modal, which in our case is MetaMask
-        // No need for the Signer here, as we are only reading state from the blockchain
-        const provider = await getProviderOrSigner();
-        // We connect to the Contract using a Provider, so we will only
-        // have read-only access to the Contract
-        const whitelistContract = new Contract(
-          WHITELIST_CONTRACT_ADDRESS,
-          abi,
-          provider
-        );
-        // call the numAddressesWhitelisted from the contract
-        const _numberOfWhitelisted =
-          await whitelistContract.numAddressesWhitelisted();
-        setNumberOfWhitelisted(_numberOfWhitelisted);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    /**
-     * checkIfAddressInWhitelist: Checks if the address is in whitelist
-     */
-    const checkIfAddressInWhitelist = async () => {
-      try {
-        // We will need the signer later to get the user's address
-        // Even though it is a read transaction, since Signers are just special kinds of Providers,
-        // We can use it in it's place
-        const signer = await getProviderOrSigner(true);
-        const whitelistContract = new Contract(
-          WHITELIST_CONTRACT_ADDRESS,
-          abi,
-          signer
-        );
-        // Get the address associated to the signer which is connected to  MetaMask
-        const address = await signer.getAddress();
-        // call the whitelistedAddresses from the contract
-        const _joinedWhitelist = await whitelistContract.whitelistedAddresses(
-          address
-        );
-        setJoinedWhitelist(_joinedWhitelist);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    /*
-      connectWallet: Connects the MetaMask wallet
-    */
-    const connectWallet = async () => {
-      try {
-        // Get the provider from web3Modal, which in our case is MetaMask
-        // When used for the first time, it prompts the user to connect their wallet
-        await getProviderOrSigner();
-        setWalletConnected(true);
-
-        checkIfAddressInWhitelist();
-        getNumberOfWhitelisted();
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    /*
-      renderButton: Returns a button based on the state of the dapp
-    */
-    const renderButton = () => {
-      if (walletConnected) {
-        if (joinedWhitelist) {
-          return (
-            <div className={styles.description}>
-              Thanks for joining the Whitelist!
-            </div>
-          );
-        } else if (loading) {
-          return <button className={styles.button}>Loading...</button>;
-        } else {
-          return (
-            <button onClick={addAddressToWhitelist} className={styles.button}>
-              Join the Whitelist
-            </button>
-          );
-        }
+      } else if (loading) {
+        return <button className={styles.button}>Loading...</button>;
       } else {
         return (
-          <button onClick={connectWallet} className={styles.button}>
-            Connect your wallet
+          <button onClick={addAddressToWhitelist} className={styles.button}>
+            Join the Whitelist
           </button>
         );
       }
-    };
+    } else {
+      return (
+        <button onClick={connectWallet} className={styles.button}>
+          Connect your wallet
+        </button>
+      );
+    }
+  };
 
-    // useEffects are used to react to changes in state of the website
-    // The array at the end of function call represents what state changes will trigger this effect
-    // In this case, whenever the value of `walletConnected` changes - this effect will be called
-    useEffect(() => {
-      // if wallet is not connected, create a new instance of Web3Modal and connect the MetaMask wallet
-      if (!walletConnected) {
-        // Assign the Web3Modal class to the reference object by setting it's `current` value
-        // The `current` value is persisted throughout as long as this page is open
-        web3ModalRef.current = new Web3Modal({
-          network: "goerli",
-          providerOptions: {},
-          disableInjectedProvider: false,
-        });
-        connectWallet();
-      }
-    }, [walletConnected]);
+  // useEffects are used to react to changes in state of the website
+  // The array at the end of function call represents what state changes will trigger this effect
+  // In this case, whenever the value of `walletConnected` changes - this effect will be called
+  useEffect(() => {
+    // if wallet is not connected, create a new instance of Web3Modal and connect the MetaMask wallet
+    if (!walletConnected) {
+      // Assign the Web3Modal class to the reference object by setting it's `current` value
+      // The `current` value is persisted throughout as long as this page is open
+      web3ModalRef.current = new Web3Modal({
+        network: "goerli",
+        providerOptions: {},
+        disableInjectedProvider: false,
+      });
+      connectWallet();
+    }
+  }, [walletConnected]);
 
-    return (
-      <div>
-        <Head>
-          <title>Whitelist Dapp</title>
-          <meta name="description" content="Whitelist-Dapp" />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
-        <div className={styles.main}>
-          <div>
-            <h1 className={styles.title}>Welcome to Crypto Devs!</h1>
-            <div className={styles.description}>
-              Its an NFT collection for developers in Crypto.
-            </div>
-            <div className={styles.description}>
-              {numberOfWhitelisted} have already joined the Whitelist
-            </div>
-            {renderButton()}
+  return (
+    <div>
+      <Head>
+        <title>Whitelist Dapp</title>
+        <meta name="description" content="Whitelist-Dapp" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+      <div className={styles.main}>
+        <div>
+          <h1 className={styles.title}>Welcome to Crypto Devs!</h1>
+          <div className={styles.description}>
+            Its an NFT collection for developers in Crypto.
           </div>
-          <div>
-            <img className={styles.image} src="./crypto-devs.svg" />
+          <div className={styles.description}>
+            {numberOfWhitelisted} have already joined the Whitelist
           </div>
+          {renderButton()}
         </div>
-
-        <footer className={styles.footer}>
-          Made with &#10084; by Crypto Devs
-        </footer>
+        <div>
+          <img className={styles.image} src="./crypto-devs.svg" />
+        </div>
       </div>
-    );
-  }
-  ```
 
-- Now create a new folder under the my-app folder and name it `constants`.
-- In the constants folder create a file, `index.js` and paste the following code.
+      <footer className={styles.footer}>
+        Made with &#10084; by Crypto Devs
+      </footer>
+    </div>
+  );
+}
+```
 
-  ```js
-  export const WHITELIST_CONTRACT_ADDRESS = "YOUR_WHITELIST_CONTRACT_ADDRESS";
-  export const abi = YOUR_ABI;
-  ```
+Now create a new folder under the my-app folder and name it `constants`. In the `constants` folder create a file, `index.js` and paste the following code.
 
-- Replace `"YOUR_WHITELIST_CONTRACT_ADDRESS"` with the address of the whitelist contract that you deployed.
-- Replace `"YOUR_ABI"` with the ABI of your Whitelist Contract. To get the ABI for your contract, go to your `hardhat-tutorial/artifacts/contracts/Whitelist.sol` folder and from your `Whitelist.json` file get the array marked under the `"abi"` key (it will be. a huge array, close to 100 lines if not more).
+```js
+export const WHITELIST_CONTRACT_ADDRESS = "YOUR_WHITELIST_CONTRACT_ADDRESS";
+export const abi = YOUR_ABI;
+```
 
-- Now in your terminal which is pointing to `my-app` folder, execute
+Replace `"YOUR_WHITELIST_CONTRACT_ADDRESS"` with the address of the whitelist contract that you deployed. Replace `"YOUR_ABI"` with the ABI of your Whitelist Contract. To get the ABI for your contract, go to your `hardhat-tutorial/artifacts/contracts/Whitelist.sol` folder and from your `Whitelist.json` file get the array marked under the `"abi"` key (it will be. a huge array, close to 100 lines if not more).
 
-  ```bash
-  npm run dev
-  ```
+Now in your terminal which is pointing to `my-app` folder, execute
+
+```bash
+npm run dev
+```
 
 Your whitelist dapp should now work without errors 🚀
 
