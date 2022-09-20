@@ -416,9 +416,9 @@ contract Exchange is ERC20 {
         // Burn the sent `LP` tokens from the user's wallet because they are already sent to
         // remove liquidity
         _burn(msg.sender, _amount);
-        // Transfer `ethAmount` of Eth from user's wallet to the contract
+        // Transfer `ethAmount` of Eth from the contract to the user's wallet
         payable(msg.sender).transfer(ethAmount);
-        // Transfer `cryptoDevTokenAmount` of `Crypto Dev` tokens from the user's wallet to the contract
+        // Transfer `cryptoDevTokenAmount` of `Crypto Dev` tokens from the contract to the user's wallet
         ERC20(cryptoDevTokenAddress).transfer(msg.sender, cryptoDevTokenAmount);
         return (ethAmount, cryptoDevTokenAmount);
     }
