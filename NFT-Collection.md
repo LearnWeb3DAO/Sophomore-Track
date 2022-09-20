@@ -53,8 +53,8 @@ To setup a Hardhat project, Open up a terminal and execute these commands
 ```bash
 mkdir NFT-Collection
 cd NFT-Collection
-mkdir hardhat
-cd hardhat
+mkdir myhardhat
+cd myhardhat
 npm init --yes
 npm install --save-dev hardhat
 ```
