@@ -46,8 +46,8 @@ To setup a Hardhat project, open up a terminal and execute these commands:
 ```bash
 mkdir ICO
 cd ICO
-mkdir hardhat
-cd hardhat
+mkdir hardhat-tutorial
+cd hardhat-tutorial
 npm init --yes
 npm install --save-dev hardhat
 ```
@@ -193,13 +193,13 @@ Create another file inside the `contracts` directory and call it `CryptoDevToken
 
 ```
 
-Now we will install the `dotenv` package to be able to import the env file and use it in our config. Open up a terminal pointing to the `hardhat` directory and execute this command:
+Now we will install the `dotenv` package to be able to import the env file and use it in our config. Open up a terminal pointing to the `hardhat-tutorial` directory and execute this command:
 
 ```bash
 npm install dotenv
 ```
 
-Now create a `.env` file in the `hardhat` folder and add the following lines. Follow the instructions below.
+Now create a `.env` file in the `hardhat-tutorial` folder and add the following lines. Follow the instructions below.
 
 Go to [Quicknode](https://www.quicknode.com/?utm_source=learnweb3&utm_campaign=generic&utm_content=sign-up&utm_medium=learnweb3) and sign up for an account. If you already have an account, log in. Quicknode is a node provider that lets you connect to various different blockchains. We will be using it to deploy our contract through Hardhat. After creating an account, `Create an endpoint` on Quicknode, select `Ethereum`, and then select the `Goerli` network. Click `Continue` in the bottom right and then click on `Create Endpoint`. Copy the link given to you in `HTTP Provider` and add it to the `.env` file below for `QUICKNODE_HTTP_URL`.
 
@@ -255,7 +255,7 @@ main()
   });
 ```
 
-You can see that the `deploy.js` file requires a constant. Let's create a `constants` folder under `hardhat` folder.
+You can see that the `deploy.js` file requires a constant. Let's create a `constants` folder under `hardhat-tutorial` folder.
 Inside the `constants` folder create a new file named `index.js` and add the following lines to it.
 
 Replace "address-of-the-nft-contract" with the address of the `CryptoDevs.sol` that you deployed in the previous module(`NFT-Collection`):
@@ -287,7 +287,7 @@ module.exports = {
 };
 ```
 
-Compile the contract, open up a terminal pointing to the `hardhat` directory and execute this command:
+Compile the contract, open up a terminal pointing to the `hardhat-tutorial` directory and execute this command:
 
 ```bash
    npx hardhat compile
@@ -308,7 +308,7 @@ You first need to create a new `next` app. Your folder structure should look som
 
 ```
    - ICO
-       - hardhat
+       - hardhat-tutorial
        - my-app
 ```
 
@@ -843,7 +843,7 @@ export const TOKEN_CONTRACT_ADDRESS = "address-of-your-token-contract";
 
 - Replace `"abi-of-your-nft-contract"` with the abi of the NFT contract that you deployed in the last tutorial.
 - Replace `"address-of-your-nft-contract"` with the address of the NFT contract that you deployed in your previous tutorial.
-- Replace `"abi-of-your-token-contract"` by the abi of the token contract. To get the abi of the Token contract, go to `hardhat/artifacts/contracts/CryptoDevToken.sol` and then from`CryptoDevToken.json` file get the array marked under the `"abi"` key.
+- Replace `"abi-of-your-token-contract"` by the abi of the token contract. To get the abi of the Token contract, go to `hardhat-tutorial/artifacts/contracts/CryptoDevToken.sol` and then from`CryptoDevToken.json` file get the array marked under the `"abi"` key.
 - Replace `"address-of-your-token-contract"` with the address of the token contract that you saved to your notepad earlier in the tutorial.
 
 Now in your terminal which is pointing to `my-app` folder, execute the following:

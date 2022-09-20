@@ -44,8 +44,8 @@ cd Whitelist-Dapp
 Then, in Whitelist-Dapp folder, we will set up a Hardhat project
 
 ```bash
-mkdir hardhat
-cd hardhat
+mkdir hardhat-tutorial
+cd hardhat-tutorial
 npm init --yes
 npm install --save-dev hardhat
 ```
@@ -134,7 +134,7 @@ main()
   });
 ```
 
-Now create a `.env` file in the `hardhat` folder and add the following lines. Follow the instructions below.
+Now create a `.env` file in the `hardhat-tutorial` folder and add the following lines. Follow the instructions below.
 
 Go to [Quicknode](https://www.quicknode.com/?utm_source=learnweb3&utm_campaign=generic&utm_content=sign-up&utm_medium=learnweb3) and sign up for an account. If you already have an account, log in. Quicknode is a node provider that lets you connect to various different blockchains. We will be using it to deploy our contract through Hardhat. After creating an account, `Create an endpoint` on Quicknode, select `Ethereum`, and then select the `Goerli` network. Click `Continue` in the bottom right and then click on `Create Endpoint`. Copy the link given to you in `HTTP Provider` and add it to the `.env` file below for `QUICKNODE_HTTP_URL`.
 
@@ -148,7 +148,7 @@ QUICKNODE_HTTP_URL="add-quicknode-http-provider-url-here"
 PRIVATE_KEY="add-the-private-key-here"
 ```
 
-Now we will install `dotenv` package to be able to import the env file and use it in our config. Open up a terminal pointing at`hardhat` directory and execute this command
+Now we will install `dotenv` package to be able to import the env file and use it in our config. Open up a terminal pointing at `hardhat-tutorial` directory and execute this command
 
 ```bash
 npm install dotenv
@@ -174,13 +174,13 @@ module.exports = {
 };
 ```
 
-Compile the contract, open up a terminal pointing at `hardhat` directory and execute this command
+Compile the contract, open up a terminal pointing at `hardhat-tutorial` directory and execute this command
 
 ```bash
 npx hardhat compile
 ```
 
-To deploy, open up a terminal pointing at `hardhat` directory and execute this command
+To deploy, open up a terminal pointing at `hardhat-tutorial` directory and execute this command
 
 ```bash
 npx hardhat run scripts/deploy.js --network goerli
@@ -205,7 +205,7 @@ Save the Whitelist Contract Address that was printed on your terminal in your no
 
   ```
   - Whitelist-Dapp
-      - hardhat
+      - hardhat-tutorial
       - my-app
   ```
 
@@ -527,7 +527,7 @@ Save the Whitelist Contract Address that was printed on your terminal in your no
   ```
 
 - Replace `"YOUR_WHITELIST_CONTRACT_ADDRESS"` with the address of the whitelist contract that you deployed.
-- Replace `"YOUR_ABI"` with the ABI of your Whitelist Contract. To get the ABI for your contract, go to your `hardhat/artifacts/contracts/Whitelist.sol` folder and from your `Whitelist.json` file get the array marked under the `"abi"` key (it will be. a huge array, close to 100 lines if not more).
+- Replace `"YOUR_ABI"` with the ABI of your Whitelist Contract. To get the ABI for your contract, go to your `hardhat-tutorial/artifacts/contracts/Whitelist.sol` folder and from your `Whitelist.json` file get the array marked under the `"abi"` key (it will be. a huge array, close to 100 lines if not more).
 
 - Now in your terminal which is pointing to `my-app` folder, execute
 

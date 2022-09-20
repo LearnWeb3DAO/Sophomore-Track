@@ -32,7 +32,7 @@ You want to allow your NFT holders to create and vote on proposals to use that E
 
 ## Prerequisites
 
-- You have completed the [NFT-Collection Tutorial](https://github.com/LearnWeb3DAO/NFT-Collection)
+- You have completed the `NFT Collection` tutorial from earlier.
 - You must have some ETH to give to the DAO Treasury
 
 ## BUIDL IT
@@ -51,8 +51,8 @@ Create a folder for this project named `DAO-Tutorial`, and open up a Terminal wi
 Setup a new hardhat project by running the following commands in your terminal:
 
 ```bash
-mkdir hardhat
-cd hardhat
+mkdir hardhat-tutorial
+cd hardhat-tutorial
 npm init --yes
 npm install --save-dev hardhat
 ```
@@ -73,7 +73,7 @@ Now, let's install the `@openzeppelin/contracts` package from NPM as we will be 
 npm install @openzeppelin/contracts
 ```
 
-First, let's make a simple Fake NFT Marketplace. Create a file named `FakeNFTMarketplace.sol` under the `contracts` directory within `hardhat`, and add the following code.
+First, let's make a simple Fake NFT Marketplace. Create a file named `FakeNFTMarketplace.sol` under the `contracts` directory within `hardhat-tutorial`, and add the following code.
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -112,7 +112,7 @@ contract FakeNFTMarketplace {
 
 The `FakeNFTMarketplace` exposes some basic functions that we will be using from the DAO contract to purchase NFTs if a proposal is passed. A real NFT marketplace would be more complicated - as not all NFTs have the same price.
 
-Let's make sure everything compiles before we start writing the DAO Contract. Run the following command inside the `hardhat` folder from your Terminal.
+Let's make sure everything compiles before we start writing the DAO Contract. Run the following command inside the `hardhat-tutorial` folder from your Terminal.
 
 ```bash
 npx hardhat compile
@@ -120,7 +120,7 @@ npx hardhat compile
 
 and make sure there are no compilation errors.
 
-Now, we will start writing the `CryptoDevsDAO` contract. Since this is mostly a completely custom contract, and relatively more complicated than what we have done so far, we will explain this one bit-by-bit. First, let's write the boilerplate code for the contract. Create a new file named `CryptoDevsDAO.sol` under the `contracts` directory in `hardhat` and add the following code to it.
+Now, we will start writing the `CryptoDevsDAO` contract. Since this is mostly a completely custom contract, and relatively more complicated than what we have done so far, we will explain this one bit-by-bit. First, let's write the boilerplate code for the contract. Create a new file named `CryptoDevsDAO.sol` under the `contracts` directory in `hardhat-tutorial` and add the following code to it.
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -402,13 +402,13 @@ fallback() external payable {}
 
 Now that we have written both our contracts, let's deploy them to the [Goerli Testnet](https://goerli.etherscan.com). Ensure you have some ETH on the Goerli Testnet.
 
-Install the `dotenv` package from NPM to be able to use environment variables specified in `.env` files in the `hardhat.config.js`. Execute the following command in your Terminal in the `hardhat` directory.
+Install the `dotenv` package from NPM to be able to use environment variables specified in `.env` files in the `hardhat.config.js`. Execute the following command in your Terminal in the `hardhat-tutorial` directory.
 
 ```bash
 npm install dotenv
 ```
 
-Now create a `.env` file in the `hardhat` folder and add the following lines. Follow the instructions below.
+Now create a `.env` file in the `hardhat-tutorial` folder and add the following lines. Follow the instructions below.
 
 Go to [Quicknode](https://www.quicknode.com/?utm_source=learnweb3&utm_campaign=generic&utm_content=sign-up&utm_medium=learnweb3) and sign up for an account. If you already have an account, log in. Quicknode is a node provider that lets you connect to various different blockchains. We will be using it to deploy our contract through Hardhat. After creating an account, `Create an endpoint` on Quicknode, select `Ethereum`, and then select the `Goerli` network. Click `Continue` in the bottom right and then click on `Create Endpoint`. Copy the link given to you in `HTTP Provider` and add it to the `.env` file below for `QUICKNODE_HTTP_URL`.
 
@@ -422,7 +422,7 @@ QUICKNODE_HTTP_URL="add-quicknode-http-provider-url-here"
 PRIVATE_KEY="add-the-private-key-here"
 ```
 
-Now, let's write a deployment script to automatically deploy both our contracts for us. Create a new file, or replace the existing default one, named `deploy.js` under `hardhat/scripts`, and add the following code:
+Now, let's write a deployment script to automatically deploy both our contracts for us. Create a new file, or replace the existing default one, named `deploy.js` under `hardhat-tutorial/scripts`, and add the following code:
 
 ```javascript
 const { ethers } = require("hardhat");
@@ -462,7 +462,7 @@ main()
   });
 ```
 
-As you may have noticed, `deploy.js` imports a variable called `CRYPTODEVS_NFT_CONTRACT_ADDRESS` from a file named `constants`. Let's make that. Create a new file named `constants.js` in the `hardhat` directory.
+As you may have noticed, `deploy.js` imports a variable called `CRYPTODEVS_NFT_CONTRACT_ADDRESS` from a file named `constants`. Let's make that. Create a new file named `constants.js` in the `hardhat-tutorial` directory.
 
 ```javascript
 // Replace the value with your NFT contract address
@@ -492,16 +492,16 @@ module.exports = {
 };
 ```
 
-Let's make sure everything compiles before proceeding. Execute the following command from your Terminal within the `hardhat` folder.
+Let's make sure everything compiles before proceeding. Execute the following command from your Terminal within the `hardhat-tutorial` folder.
 
 ```bash
 npx hardhat compile
 ```
 
 and make sure there are no compilation errors.
-If you do face compilation errors, try comparing your code against the [final version present here](https://github.com/LearnWeb3DAO/Building-a-DAO/blob/main/hardhat/contracts/CryptoDevsDAO.sol)
+If you do face compilation errors, try comparing your code against the [final version present here](https://github.com/LearnWeb3DAO/Building-a-DAO/blob/main/hardhat-tutorial/contracts/CryptoDevsDAO.sol)
 
-Let's deploy! Execute the following command in your Terminal from the `hardhat` directory
+Let's deploy! Execute the following command in your Terminal from the `hardhat-tutorial` directory
 
 ```bash
 npx hardhat run scripts/deploy.js --network goerli
@@ -521,7 +521,7 @@ Let's get started by creating a new `next` app. Your folder structure should loo
 
 ```bash
 - DAO-Tutorial
-    - hardhat
+    - hardhat-tutorial
     - my-app
 ```
 

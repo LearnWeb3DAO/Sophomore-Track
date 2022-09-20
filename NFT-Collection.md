@@ -53,8 +53,8 @@ To setup a Hardhat project, Open up a terminal and execute these commands
 ```bash
 mkdir NFT-Collection
 cd NFT-Collection
-mkdir hardhat
-cd hardhat
+mkdir hardhat-tutorial
+cd hardhat-tutorial
 npm init --yes
 npm install --save-dev hardhat
 ```
@@ -212,13 +212,13 @@ contract CryptoDevs is ERC721Enumerable, Ownable {
 }
 ```
 
-Now let's install `dotenv` package to be able to import the env file and use it in our config. Open up a terminal pointing at `hardhat` directory and execute this command
+Now let's install `dotenv` package to be able to import the env file and use it in our config. Open up a terminal pointing at `hardhat-tutorial` directory and execute this command
 
 ```bash
 npm install dotenv
 ```
 
-Now create a `.env` file in the `hardhat` folder and add the following lines. Follow the instructions below.
+Now create a `.env` file in the `hardhat-tutorial` folder and add the following lines. Follow the instructions below.
 
 Go to [Quicknode](https://www.quicknode.com/?utm_source=learnweb3&utm_campaign=generic&utm_content=sign-up&utm_medium=learnweb3) and sign up for an account. If you already have an account, log in. Quicknode is a node provider that lets you connect to various different blockchains. We will be using it to deploy our contract through Hardhat. After creating an account, `Create an endpoint` on Quicknode, select `Ethereum`, and then select the `Goerli` network. Click `Continue` in the bottom right and then click on `Create Endpoint`. Copy the link given to you in `HTTP Provider` and add it to the `.env` file below for `QUICKNODE_HTTP_URL`.
 
@@ -274,7 +274,7 @@ main()
   });
 ```
 
-As you can see, `deploy.js` requires some constants. Lets create a folder named `constants` under the `hardhat` folder. Create an `index.js` file inside the `constants` folder and add the following lines to the file. Replace "address-of-the-whitelist-contract" with the address of the whitelist contract that you deployed in the previous tutorial. For Metadata_URL, just copy the sample one that has been provided. We would replace this further down in the tutorial.
+As you can see, `deploy.js` requires some constants. Lets create a folder named `constants` under the `hardhat-tutorial` folder. Create an `index.js` file inside the `constants` folder and add the following lines to the file. Replace "address-of-the-whitelist-contract" with the address of the whitelist contract that you deployed in the previous tutorial. For Metadata_URL, just copy the sample one that has been provided. We would replace this further down in the tutorial.
 
 ```js
 // Address of the Whitelist Contract that you deployed
@@ -305,13 +305,13 @@ module.exports = {
 };
 ```
 
-Compile the contract, open up a terminal pointing at `hardhat` directory and execute this command
+Compile the contract, open up a terminal pointing at `hardhat-tutorial` directory and execute this command
 
 ```bash
 npx hardhat compile
 ```
 
-To deploy, open up a terminal pointing at `hardhat` directory and execute this command
+To deploy, open up a terminal pointing at `hardhat-tutorial` directory and execute this command
 
 ```bash
 npx hardhat run scripts/deploy.js --network goerli
@@ -326,7 +326,7 @@ Save the Crypto Devs Contract Address that was printed on your terminal in your 
 
   ```
      - NFT-Collection
-         - hardhat
+         - hardhat-tutorial
          - my-app
   ```
 
@@ -803,7 +803,7 @@ Save the Crypto Devs Contract Address that was printed on your terminal in your 
 
 Now create a new folder under the `my-app` folder and name it `constants`. In the `constants` folder create a file, `index.js` and paste the following code.
 
-Replace `"addres of your NFT contract"` with the address of the CryptoDevs contract that you deployed and saved to your notepad. Replace `---your abi---` with the abi of your CryptoDevs Contract. To get the abi for your contract, go to your `hardhat/artifacts/contracts/CryptoDevs.sol` folder and from your `CryptoDevs.json` file get the array marked under the `"abi"` key.
+Replace `"addres of your NFT contract"` with the address of the CryptoDevs contract that you deployed and saved to your notepad. Replace `---your abi---` with the abi of your CryptoDevs Contract. To get the abi for your contract, go to your `hardhat-tutorial/artifacts/contracts/CryptoDevs.sol` folder and from your `CryptoDevs.json` file get the array marked under the `"abi"` key.
 
 ```js
 export const abi =---your abi---
@@ -873,9 +873,9 @@ Now you have an API route that OpenSea, and other websites, can call to retrieve
 
 Lets deploy a new version of the `Crypto Devs` contract with this new API route as your `METADATA_URL`
 
-Open your `hardhat/constants` folder and inside your `index.js` file, replace "https://nft-collection-sneh1999.vercel.app/api/" with the domain which you saved to notepad and add "/api/" to its end.
+Open your `hardhat-tutorial/constants` folder and inside your `index.js` file, replace "https://nft-collection-sneh1999.vercel.app/api/" with the domain which you saved to notepad and add "/api/" to its end.
 
-Save the file and open up a new terminal pointing to `hardhat` folder and deploy a new contract
+Save the file and open up a new terminal pointing to `hardhat-tutorial` folder and deploy a new contract
 
 ```bash
   npx hardhat run scripts/deploy.js --network goerli

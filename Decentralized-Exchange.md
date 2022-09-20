@@ -21,9 +21,9 @@ Lets start building 🚀
 
 ## Prerequisites
 
-- You have completed the [ICO tutorial](https://github.com/LearnWeb3DAO/ICO)
-- You have completed the [Defi Exchange Theory Tutorial](https://github.com/LearnWeb3DAO/Defi-Exchange-Theory)
-- You have completed the [Mixed Topics Tutorial](https://github.com/LearnWeb3DAO/Sophomore-Mixed-Topics)
+- You have completed the `ICO Tutorial` from before
+- You have completed the `Intro and deep dive into Decentralized Exchanges` tutorial from before
+- You have completed the `Providers, Signers, ABIs, and Approval Flows` tutorial from before
 
 ---
 
@@ -35,8 +35,8 @@ Hardhat is an Ethereum development environment and framework designed for full s
 To setup a Hardhat project, Open up a terminal and execute these commands
 
 ```bash
-mkdir hardhat
-cd hardhat
+mkdir hardhat-tutorial
+cd hardhat-tutorial
 npm init --yes
 npm install --save-dev hardhat
 ```
@@ -495,13 +495,13 @@ contract Exchange is ERC20 {
 }
 ```
 
-Let's now install the `dotenv` package to be able to import the env file and use it in our config. Open up a terminal pointing at `hardhat` directory and execute this command
+Let's now install the `dotenv` package to be able to import the env file and use it in our config. Open up a terminal pointing at `hardhat-tutorial` directory and execute this command
 
 ```bash
 npm install dotenv
 ```
 
-Now create a `.env` file in the `hardhat` folder and add the following lines. Follow the instructions below.
+Now create a `.env` file in the `hardhat-tutorial` folder and add the following lines. Follow the instructions below.
 
 Go to [Quicknode](https://www.quicknode.com/?utm_source=learnweb3&utm_campaign=generic&utm_content=sign-up&utm_medium=learnweb3) and sign up for an account. If you already have an account, log in. Quicknode is a node provider that lets you connect to various different blockchains. We will be using it to deploy our contract through Hardhat. After creating an account, `Create an endpoint` on Quicknode, select `Ethereum`, and then select the `Goerli` network. Click `Continue` in the bottom right and then click on `Create Endpoint`. Copy the link given to you in `HTTP Provider` and add it to the `.env` file below for `QUICKNODE_HTTP_URL`.
 
@@ -515,7 +515,7 @@ QUICKNODE_HTTP_URL="add-quicknode-http-provider-url-here"
 PRIVATE_KEY="add-the-private-key-here"
 ```
 
-Lets also create a constants folder to keep track of any constants we have. Under the `hardhat` folder create a new folder named `constants` and under the `constants` folder create a new file `index.js`
+Lets also create a constants folder to keep track of any constants we have. Under the `hardhat-tutorial` folder create a new folder named `constants` and under the `constants` folder create a new file `index.js`
 
 Inside the `index.js` file add the following lines of code. Remember to replace `ADDRESS-OF-CRYPTO-DEV-TOKEN` with the contract address of the `Crypto Dev` token contract that you deployed in the `ICO` tutorial
 
@@ -581,13 +581,13 @@ module.exports = {
 };
 ```
 
-Compile the contract, open up a terminal pointing at `hardhat` directory and execute this command
+Compile the contract, open up a terminal pointing at `hardhat-tutorial` directory and execute this command
 
 ```bash
 npx hardhat compile
 ```
 
-To deploy, open up a terminal pointing at `hardhat` directory and execute this command
+To deploy, open up a terminal pointing at `hardhat-tutorial` directory and execute this command
 
 ```bash
  npx hardhat run scripts/deploy.js --network goerli
@@ -603,7 +603,7 @@ First, You would need to create a new `next` app. Your folder structure should l
 
 ```
    - DeFi-Exchange
-       - hardhat
+       - hardhat-tutorial
        - my-app
 ```
 
@@ -741,7 +741,7 @@ Paste the following code.
 
 - Replace `ABI-CRYPTO-DEV-TOKEN-CONTRACT` with the abi of the `Crypto Dev` token contract that you deployed in the ICO tutorial.
 - Replace `ADDRESS-OF-CRYPTO-DEV-TOKEN-CONTRACT` with the address of the `Crypto Dev` token contract that you deployed in the ICO tutorial
-- Replace `ABI-EXCHANGE-CONTRACT` with the abi of the Exchange Contract. To get the abi for your contract, go to your `hardhat/artifacts/contracts/Exchange.sol` folder and from your `Exchange.json` file get the array marked under the `"abi"` key.
+- Replace `ABI-EXCHANGE-CONTRACT` with the abi of the Exchange Contract. To get the abi for your contract, go to your `hardhat-tutorial/artifacts/contracts/Exchange.sol` folder and from your `Exchange.json` file get the array marked under the `"abi"` key.
 - Replace `ADDRESS-EXCHANGE-CONTRACT` with the address of the exchange contract that you deployed above and saved to your notepad
 
   ```javascript
