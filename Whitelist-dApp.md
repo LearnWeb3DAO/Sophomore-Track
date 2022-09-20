@@ -44,8 +44,8 @@ cd Whitelist-Dapp
 Then, in Whitelist-Dapp folder, we will set up a Hardhat project
 
 ```bash
-mkdir hardhat
-cd hardhat
+mkdir myhardhat
+cd myhardhat
 npm init --yes
 npm install --save-dev hardhat
 ```
