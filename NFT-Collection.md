@@ -286,7 +286,7 @@ const METADATA_URL = "https://nft-collection-sneh1999.vercel.app/api/";
 module.exports = { WHITELIST_CONTRACT_ADDRESS, METADATA_URL };
 ```
 
-Now open the `hardhat.config.js` file, we'll the `goerli` network here so that we can deploy our contract to the Goerli network. Replace all the lines in the `hardhat.config.js` file with the given below lines
+Now open the `hardhat.config.js` file, we'll set-up the `goerli` network here so that we can deploy our contract to the Goerli network. Replace all the lines in the `hardhat.config.js` file with the given below lines
 
 ```js
 require("@nomicfoundation/hardhat-toolbox");
