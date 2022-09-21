@@ -217,7 +217,7 @@ But, none of that matters if users have to keep spending hundreds of dollars to 
 
 As such, there are a lot of things being worked on, and some already available, to allow for a reduction in gas fees and improve the user experience.
 
-Primarily, the network upgrades that will be offered by Ethereum 2.0 (also known as Eth2) will ultimately address some of the gas issues, which in turn will enable the network to process thousands of transactions per second and scale globally.
+Primarily, the [network upgrades](https://ethereum.org/en/upgrades/) that will be offered by Ethereum will ultimately address some of the gas issues, which in turn will enable the network to process thousands of transactions per second and scale globally.
 
 In addition, a lot of work is being done on Layer 2 Scaling. We will learn much more in depth about Layer 2 Scaling and Layer 2 platforms later on, but essentially they are networks which shift the heavy computation aspects of smart contracts somewhere else, and use the Ethereum mainnet as a final settlement layer, thereby inheriting the security and decentralization benefits of Ethereum, and maintaining low gas fees and high transaction speed for users.
 
