@@ -884,6 +884,6 @@ Save the file and open up a new terminal pointing to `hardhat-tutorial` folder a
 
 Save the new NFT contract address to a notepad as we will need it later. Open up "my-app/constants" folder and inside the `index.js` file replace the old NFT contract address with the new one
 
-Push all the code to github and wait for Vercel to deploy the new code. After vercel has deployed your code, open up your website and mint an NFT. After your transaction gets successful, in your browser open up this link by replacing `your-nft-contract-address` with the address of your NFT contract (https://testnets.opensea.io/assets/your-nft-contract-address/1)
+Push all the code to github and wait for Vercel to deploy the new code. After vercel has deployed your code, open up your website and mint an NFT. After your transaction gets successful, in your browser open up this link by replacing `your-nft-contract-address` with the address of your NFT contract (https://testnets.opensea.io/assets/goerli/your-nft-contract-address/1)
 
 Your NFT is now available on Opensea 🚀 🥳 Share your Opensea link with everyone on discord :) and spread happiness.
