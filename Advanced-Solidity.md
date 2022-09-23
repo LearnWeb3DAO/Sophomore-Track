@@ -324,11 +324,13 @@ The order of inheritance matters if parent contracts share methods or attributes
 pragma solidity ^0.8.10;
 
 /* Graph of inheritance
-    A
-   / \
-  B   C
- /   /
-D   E
+  A
+ /  \
+B    C
+|\  /|
+| \/ |
+| /\ | 
+D    E
 
 */
 
