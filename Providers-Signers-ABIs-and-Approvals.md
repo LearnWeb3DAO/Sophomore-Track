@@ -66,7 +66,7 @@ As to what would happen if we were to try and do this with Javascript numbers, w
 
 ## ABI
 
-ABI stands for **A**pplication **B**inary **I**nterface. It is one of the more tricky things to understand when working with Ethereum, but we will try to explain it as best as we can.
+ABI stands for **A**pplication **B**inary **I**nterface. It is one of the most tricky things to understand when working with Ethereum, but we will try to explain it as best as we can.
 
 In Freshman tutorials, and in tutorials you will come across further, you will be using `ABI`s heavily.
 
