@@ -239,6 +239,7 @@ async function main() {
     cryptoDevsNFTContract
   );
 
+  await deployedCryptoDevsTokenContract.deployed();
   // print the address of the deployed contract
   console.log(
     "Crypto Devs Token Contract Address:",
