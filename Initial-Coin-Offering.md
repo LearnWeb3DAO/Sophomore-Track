@@ -60,6 +60,12 @@ npx hardhat
 
 Make sure you select `Create a Javascript Project` and then follow the steps in the terminal to complete your Hardhat setup.
 
+For Windows users, please ensure to make this extra step:
+
+```bash
+npm install --save-dev "hardhat@^2.11.2" "@nomicfoundation/hardhat-toolbox@^2.0.0"
+```
+
 In the same terminal, install `@openzeppelin/contracts` as we will be importing [Openzeppelin's ERC20 Contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/token/ERC20/ERC20.sol) and [Openzeppelin's Ownable Contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) in our `CryptoDevToken` contract.
 
 ```bash
