@@ -819,6 +819,21 @@ export default function Home() {
       window.alert(error.data.message);
     }
   };
+  
+  // Calls the `withdrawEther` function in the contract
+  const withdrawEther = async () => {
+    try {
+      const signer = await getProviderOrSigner(true);
+      const daoContract = getDaoContractInstance(signer);
+      const tx = await daoContract.withdrawEther();
+      setLoading(true);
+      await tx.wait();
+      setLoading(false);
+      await getOwner();
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   // Helper function to fetch a Provider/Signer instance from Metamask
   const getProviderOrSigner = async (needSigner = false) => {
@@ -875,6 +890,9 @@ export default function Home() {
         getDAOTreasuryBalance();
         getUserNFTBalance();
         getNumProposalsInDAO();
+        if (parseFloat(treasuryBalance) > 0) {
+          withdrawEther();
+        }
       });
     }
   }, [walletConnected]);
