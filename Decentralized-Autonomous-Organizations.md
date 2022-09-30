@@ -681,6 +681,9 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   // True if user has connected their wallet, false otherwise
   const [walletConnected, setWalletConnected] = useState(false);
+  // isOwner gets the owner of the contract through the signed address
+  const [isOwner, setIsOwner] = useState(false);
+  // Create a reference to the Web3 Modal (used for connecting to Metamask) which persists as long as the page is open
   const web3ModalRef = useRef();
 
   // Helper function to connect wallet
@@ -820,6 +823,22 @@ export default function Home() {
     }
   };
   
+  // Helper function to fetch owner of the DAO Contract
+  const getOwner = async () => {
+    try {
+      const provider = await getProviderOrSigner();
+      const daoContract = getDaoContractInstance(provider);
+      const _owner = await daoContract.owner();
+      const signer = await getProviderOrSigner(true);
+      const address = await signer.getAddress();
+      if (address.toLowerCase() === _owner.toLowerCase()) {
+        setIsOwner(true);
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  
   // Calls the `withdrawEther` function in the contract
   const withdrawEther = async () => {
     try {
@@ -872,6 +891,36 @@ export default function Home() {
       providerOrSigner
     );
   };
+  
+  // Renders the button for 'Withdraw ether and Create and View Proposals'
+  const renderButton = () => {
+    if (parseFloat(treasuryBalance) > 0 && walletConnected && isOwner) {
+      getDAOTreasuryBalance();
+      console.log(parseFloat(treasuryBalance));
+      return (
+        <button className={styles.button} onClick={() => withdrawEther()}>
+          Withdraw Ether
+        </button>
+      );
+    } else {
+      return (
+        <div className={styles.flex}>
+          <button
+            className={styles.button}
+            onClick={() => setSelectedTab('Create Proposals')}
+          >
+            Create Proposal
+          </button>
+          <button
+            className={styles.button}
+            onClick={() => setSelectedTab('View Proposals')}
+          >
+            View Proposal
+          </button>
+        </div>
+      );
+    }
+  };
 
   // piece of code that runs everytime the value of `walletConnected` changes
   // so when a wallet connects or disconnects
@@ -890,9 +939,7 @@ export default function Home() {
         getDAOTreasuryBalance();
         getUserNFTBalance();
         getNumProposalsInDAO();
-        if (parseFloat(treasuryBalance) > 0) {
-          withdrawEther();
-        }
+        getOwner();
       });
     }
   }, [walletConnected]);
@@ -1025,20 +1072,7 @@ export default function Home() {
             <br />
             Total Number of Proposals: {numProposals}
           </div>
-          <div className={styles.flex}>
-            <button
-              className={styles.button}
-              onClick={() => setSelectedTab("Create Proposal")}
-            >
-              Create Proposal
-            </button>
-            <button
-              className={styles.button}
-              onClick={() => setSelectedTab("View Proposals")}
-            >
-              View Proposals
-            </button>
-          </div>
+          {renderButton()}
           {renderTabs()}
         </div>
         <div>
