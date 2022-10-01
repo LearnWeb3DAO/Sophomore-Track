@@ -2,7 +2,7 @@
 
 Mining is the process that helps create new blocks of transactions to be added to the Ethereum blockchain network. It also helps keep the network secure from attacks.
 
-Just like Bitcoin, Ethereum currently uses a Proof-of-Work (PoW) consensus mechanism, which is heavily reliant on mining. Ethereum miners use their time and computation power to process new incoming transactions and produce new blocks.
+Just like Bitcoin, Ethereum previously used a Proof-of-Work (PoW) consensus mechanism, which is heavily reliant on mining. Ethereum miners use their time and computation power to process new incoming transactions and produce new blocks.
 
 > A recent upgrade, Ethereum 2.0 replaced Proof of Work with Proof of Stake in September 2022, which will significantly change how new blocks are produced. We will talk about Eth2 later.
 
