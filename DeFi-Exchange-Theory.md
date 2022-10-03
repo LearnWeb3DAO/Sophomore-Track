@@ -20,6 +20,8 @@ The Ontario Securities Commision conducted thorough research into the activities
 
 [You can read more about what happened with Quadriga here](https://www.cbc.ca/news/business/osc-quadriga-gerald-cotten-1.5607990)
 
+> Fun Fact: There's now even a [documentary on Netflix](https://www.netflix.com/title/81349029) about this incident.
+
 ---
 
 This is not an exhaustive list by any means, but it gives you an idea. Web3 has a common saying
