@@ -135,6 +135,6 @@ The following are recommended, but optional, readings/viewings to understand mor
 - [A technical explanation of Proof of Work by Khan Academy](https://www.youtube.com/watch?v=9V1bipPkCTU)
 - [51% Attacks](https://en.bitcoin.it/wiki/Majority_attack)
 - [Transaction Finality](https://blog.ethereum.org/2016/05/09/on-settlement-finality/)
-- [Ethash](https://eth.wiki/en/concepts/ethash/ethash)
+- [Ethash](https://ethereum.org/en/developers/docs/consensus-mechanisms/pow/mining-algorithms/ethash/)
 
 <SubmitQuiz />
