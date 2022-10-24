@@ -387,6 +387,22 @@ There are three ways to transfer ETH from a contract to some other address. Howe
 
 Currently, the recommended way to transfer ETH from a contract is to use the `call` function. The `call` function returns a `bool` indicating success or failure of the transfer.
 
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.10;
+
+contract SendEther {
+    function sendEth(address payable _to) public payable {
+        // Just forward the ETH received in this payable function
+        // to the given address
+        uint amountToSend = msg.value;
+        // call returns a bool value specifying success or failure
+        (bool success, bytes memory data) = _to.call{value: msg.value}("");
+        require(success == true, "Failed to send ETH");
+    }
+}
+```
+
 ### How to receive Ether in a regular Ethereum account address
 
 If transferring ETH to a regular account (like a Metamask address), you do not need to do anything special as all such accounts can automatically accept ETH transfers.
@@ -431,17 +447,6 @@ receive() exists?  fallback()
 
     function getBalance() public view returns (uint) {
         return address(this).balance;
-    }
-}
-
-contract SendEther {
-    function sendEth(address payable _to) public payable {
-        // Just forward the ETH received in this payable function
-        // to the given address
-        uint amountToSend = msg.value;
-        // call returns a bool value specifying success or failure
-        (bool success, bytes memory data) = _to.call{value: msg.value}("");
-        require(success == true, "Failed to send ETH");
     }
 }
 ```
