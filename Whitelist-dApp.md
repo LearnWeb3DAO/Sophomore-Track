@@ -57,6 +57,7 @@ npx hardhat
 ```
 
 Make sure you select `Create a Javascript Project` and then follow the steps in the terminal to complete your Hardhat setup.
+npm install --save-dev @nomicfoundation/hardhat-toolbox
 
 Once your project is set up, start by creating a new file inside the `contracts` directory called `Whitelist.sol`.
 
