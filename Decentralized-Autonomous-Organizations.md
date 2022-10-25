@@ -637,6 +637,9 @@ Add the following CSS styles in `my-app/styles/Home.modules.css`
 ```
 
 The website also needs to read/write data from two smart contracts - `CryptoDevsDAO` and `CryptoDevsNFT`. Let's store their contract addresses and ABIs in a constants file. Create a `constants.js` file in the `my-app` directory.
+Replace CRYPTODEVS_NFT_ABI with the abi of the Crypto Dev NFT Collection contract that you deployed in the Build a full NFT Collection tutorial.
+
+Replace CRYPTODEVS_NFT_CONTRACT_ADDRESS with the address of the Crypto Dev NFT Collection contract that you deployed in the Build a full NFT Collection tutorial.
 
 ```javascript
 export const CRYPTODEVS_DAO_CONTRACT_ADDRESS = "";
