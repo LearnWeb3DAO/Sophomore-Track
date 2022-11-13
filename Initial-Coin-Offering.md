@@ -642,7 +642,7 @@ export default function Home() {
   };
 
   /**
-   * withdrawCoins: withdraws ether and tokens by calling
+   * withdrawCoins: withdraws ether by calling
    * the withdraw function in the contract
    */
   const withdrawCoins = async () => {
@@ -810,7 +810,7 @@ export default function Home() {
                 {walletConnected && isOwner ? (
                   <div>
                   {loading ? <button className={styles.button}>Loading...</button>
-                           : <button className={styles.button1} onClick={withdrawCoins}>
+                           : <button className={styles.button} onClick={withdrawCoins}>
                                Withdraw Coins
                              </button>
                   }
