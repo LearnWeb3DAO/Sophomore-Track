@@ -1,8 +1,8 @@
 # What is Proof of Work?
 
-Ethereum, like Bitcoin, currently uses a consensus protocol called **Proof of Work (PoW)**. This allows all nodes on the Ethereum Network to agree on the current state of the blockchain, and secures the network against a variety of attacks.
+Ethereum, like Bitcoin, used to use a consensus protocol called **Proof of Work (PoW)**. This allows all nodes on the Ethereum Network to agree on the current state of the blockchain, and secures the network against a variety of attacks.
 
-> NOTE: Recently on September 15 2022, the Ethereum Merge completed and Ethereum shifted to a Proof of Stake system. We will have a new lesson in Sophomore to talk about Proof of Stake shortly. Ethereum no longer uses Proof of Work, however it is very helpful to understand it.
+> NOTE: Recently on September 15 2022, the Ethereum Merge completed and Ethereum shifted to a Proof of Stake system. We have added a new lesson to the Sophomore track (the very next one) that explains Proof of Stake, but it is still helpful to understand Proof of Work first.
 
 ## What is consensus?
 
