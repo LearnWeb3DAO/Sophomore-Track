@@ -4,8 +4,6 @@ Ethereum, unlike Bitcoin, uses a consensus protocol called **Proof of Stake (PoS
 
 > NOTE: Prior to September 15, 2022, Ethereum used to use the **Proof of Work (PoW)** consensus protocol, as Bitcoin does. A major update to the network - colloquially referred to as 'The Merge' updated the consensus protocol from PoW to PoS.
 
-> If you're interested in reading more about how PoW works as that lesson has been removed from this track, check out the [old lesson here](https://github.com/LearnWeb3DAO/Sophomore-Track/blob/main/Proof-of-Work.md)
-
 ## What is consensus?
 
 Merriam-Webster defines the word 'consensus' as follows.
