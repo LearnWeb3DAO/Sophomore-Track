@@ -34,7 +34,7 @@ If you would rather learn from a video, we have a recording available of this tu
 To build the smart contract we will be using [Hardhat](https://hardhat.org/).
 Hardhat is an Ethereum development environment and framework designed for full stack development in Solidity. In simple words you can write your smart contract, deploy them, run tests, and debug your code.
 
-First, you need to create a Whitelist-Daap folder where the Hardhat project and your Next.js app will later go. Open up a terminal and execute these commands
+First, you need to create a Whitelist-Dapp folder where the Hardhat project and your Next.js app will later go. Open up a terminal and execute these commands
 
 ```bash
 mkdir Whitelist-Dapp
