@@ -330,7 +330,7 @@ npm run dev
 
 Now go to `http://localhost:3000`, your app should be running 🤘
 
-Now let's install the Web3Modal library(https://github.com/Web3Modal/web3modal). Web3Modal is an easy-to-use library to help developers add support for multiple providers in their apps with a simple customizable configuration. By default Web3Modal Library supports injected providers like (Metamask, Dapper, Gnosis Safe, Frame, Web3 Browsers, etc). You can also easily configure the library to support Portis, Fortmatic, Squarelink, Torus, Authereum, D'CENT Wallet, and Arkane.
+Now let's install the [Web3Modal library](https://github.com/Web3Modal/web3modal). Web3Modal is an easy-to-use library to help developers add support for multiple providers in their apps with a simple customizable configuration. By default Web3Modal Library supports injected providers like (Metamask, Dapper, Gnosis Safe, Frame, Web3 Browsers, etc). You can also easily configure the library to support Portis, Fortmatic, Squarelink, Torus, Authereum, D'CENT Wallet, and Arkane.
 Open up a terminal pointing to `my-app` directory and execute this command:
 
 ```bash
@@ -343,7 +343,7 @@ In the same terminal also install `ethers.js`:
 npm install ethers
 ```
 
-In the `public` folder, download the following image (https://github.com/LearnWeb3DAO/NFT-Collection/tree/main/my-app/public/cryptodevs/0.svg). Make sure that the name of the downloaded image is `0.svg`.
+In the `public` folder, download the following [image](https://github.com/LearnWeb3DAO/NFT-Collection/tree/main/my-app/public/cryptodevs/0.svg). Make sure that the name of the downloaded image is `0.svg`.
 
 Now go to styles folder and replace all the contents of `Home.modules.css` file with the following code. This will add some styling to your dapp:
 
