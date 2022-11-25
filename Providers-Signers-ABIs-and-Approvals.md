@@ -152,6 +152,7 @@ Well, note how Bob had to give approval to the contract, so the contract could _
 Therefore, Bob essentially had to do two transactions to replicate the behaviour of what could be done in one transaction if payment was being accepted in ETH.
 
 **Transaction 1** - Give allowance to the contract
+
 **Transaction 2** - Call the contract function, which internally uses the allowance to transfer Bob's tokens to a different address
 
 So, if you were building a dApp where you needed users to pay your smart contract using an ERC20 token, you would also need to make them do both transactions. Simply calling your contract function, without first having your users provide allowance to your contract, will cause the function call to fail.
