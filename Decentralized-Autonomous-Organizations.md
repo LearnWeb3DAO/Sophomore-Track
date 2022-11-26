@@ -37,6 +37,35 @@ You want to allow your NFT holders to create and vote on proposals to use that E
 
 ## BUIDL IT
 
+### Setup our Project
+
+In the previous tutorials we have setup Hardhat and Next JS seperately. Now we're gonna use a nifty trick to install them together so that we don't have to worry about installing and configuring them ourselves. 
+
+For this project we need to install Next JS with Web3Modal, so let's open a terminal in the place we would want to create this project. Ex: If you do all projects in a folder called `My-Projects` then open the terminal inside of that folder.
+
+Type the following commands to setup your Next JS - Hardhat project : 
+
+```bash
+npx @startertemp/nextjs-hardhat LearnWeb3-DAO
+```
+
+> If this is your first time using this, you will be prompted whether you want to install `@startertemp/nextjs-hardhat`. Make sure you confirm yes to that by typing out `y`.
+
+*You can use [this guide](#) to understand this project more or checkout [this repository](https://github.com/startertemp/nextjs-hardhat) to understand how it works*
+
+![StaterTempExecutionSS](https://i.imgur.com/t1eQ2AS.png)
+
+This uses `npm` to install and setup all our necessary files to proceed with our work.
+
+Once everything is installed, let's move into the directory and start VSCode. 
+
+```bash
+cd LearnWeb3-DAO
+code .
+```
+
+> If this does not pop-up your VSCode, make sure to follow these guides to setup on [Mac](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line), [Windows](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line) or [Linux](https://code.visualstudio.com/docs/setup/linux#_the-code-bin-command-does-not-bring-the-window-to-the-foreground-on-ubuntu)
+
 ### Smart Contract Development
 
 We will start off with first creating the smart contracts. We will be making two smart contracts:
