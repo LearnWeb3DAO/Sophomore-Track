@@ -46,7 +46,7 @@ For this project we need to install Next JS with Web3Modal, so let's open a term
 Type the following commands to setup your Next JS - Hardhat project : 
 
 ```bash
-npx @startertemp/nextjs-hardhat LearnWeb3-DAO
+npx @startertemp/nextjs-hardhat DAO-Tutorial
 ```
 
 > If this is your first time using this, you will be prompted whether you want to install `@startertemp/nextjs-hardhat`. Make sure you confirm yes to that by typing out `y`.
@@ -60,11 +60,13 @@ This uses `npm` to install and setup all our necessary files to proceed with our
 Once everything is installed, let's move into the directory and start VSCode. 
 
 ```bash
-cd LearnWeb3-DAO
+cd DAO-Tutorial
 code .
 ```
 
 > If this does not pop-up your VSCode, make sure to follow these guides to setup on [Mac](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line), [Windows](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line) or [Linux](https://code.visualstudio.com/docs/setup/linux#_the-code-bin-command-does-not-bring-the-window-to-the-foreground-on-ubuntu)
+
+> Fun Fact : It's important to make sure your plugins are up-to-date by running `npm update`. Just make sure the updates you want won't break your code. For startertemp we have set the versions so it should be okay to update. You can read more about it [here](https://docs.npmjs.com/updating-packages-downloaded-from-the-registry#updating-local-packages).
 
 ### Smart Contract Development
 
@@ -73,36 +75,15 @@ We will start off with first creating the smart contracts. We will be making two
 - `FakeNFTMarketplace.sol`
 - `CryptoDevsDAO.sol`
 
-To do so, we will use the [Hardhat](https://hardhat.org) development framework we have been using for the last few tutorials.
-
-Create a folder for this project named `DAO-Tutorial`, and open up a Terminal window in that folder.
-
-Setup a new hardhat project by running the following commands in your terminal:
+Since we already have the Hardhat folder setup, we don't need to install anything, but move into the hardhat folder by typing the following command in your Integrated Terminal inside VSCode :
 
 ```bash
-mkdir hardhat-tutorial
-cd hardhat-tutorial
-npm init --yes
-npm install --save-dev hardhat
+cd backend
 ```
 
-Now that you have installed Hardhat, we can setup a project. Execute the following command in your terminal.
+> Note : The `backend` folder here means the `hardhat` folder that you are used to.
 
-In the same directory where you installed Hardhat run:
-
-```bash
-npx hardhat
-```
-
-Make sure you select `Create a Javascript Project` and then follow the steps in the terminal to complete your Hardhat setup.
-
-Now, let's install the `@openzeppelin/contracts` package from NPM as we will be using [OpenZeppelin's Ownable Contract](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol) for the DAO contract.
-
-```bash
-npm install @openzeppelin/contracts
-```
-
-First, let's make a simple Fake NFT Marketplace. Create a file named `FakeNFTMarketplace.sol` under the `contracts` directory within `hardhat-tutorial`, and add the following code.
+First, let's make a simple Fake NFT Marketplace. Create a file named `FakeNFTMarketplace.sol` under the `contracts` directory within `backend`, and add the following code.
 
 ```solidity
 // SPDX-License-Identifier: MIT
@@ -141,7 +122,7 @@ contract FakeNFTMarketplace {
 
 The `FakeNFTMarketplace` exposes some basic functions that we will be using from the DAO contract to purchase NFTs if a proposal is passed. A real NFT marketplace would be more complicated - as not all NFTs have the same price.
 
-Let's make sure everything compiles before we start writing the DAO Contract. Run the following command inside the `hardhat-tutorial` folder from your Terminal.
+Let's make sure everything compiles before we start writing the DAO Contract. Run the following command inside the `backend` folder from your Terminal.
 
 ```bash
 npx hardhat compile
@@ -431,13 +412,9 @@ fallback() external payable {}
 
 Now that we have written both our contracts, let's deploy them to the [Goerli Testnet](https://goerli.etherscan.com). Ensure you have some ETH on the Goerli Testnet.
 
-Install the `dotenv` package from NPM to be able to use environment variables specified in `.env` files in the `hardhat.config.js`. Execute the following command in your Terminal in the `hardhat-tutorial` directory.
+Now create a `.env` file in the `backend` folder and add the following lines. Follow the instructions below.
 
-```bash
-npm install dotenv
-```
-
-Now create a `.env` file in the `hardhat-tutorial` folder and add the following lines. Follow the instructions below.
+> Note : Usually you would need to install `dotenv`, but it comes installed with the startertemp so you don't have to worry about installing it now.
 
 Go to [Quicknode](https://www.quicknode.com/?utm_source=learnweb3&utm_campaign=generic&utm_content=sign-up&utm_medium=learnweb3) and sign up for an account. If you already have an account, log in. Quicknode is a node provider that lets you connect to various different blockchains. We will be using it to deploy our contract through Hardhat. After creating an account, `Create an endpoint` on Quicknode, select `Ethereum`, and then select the `Goerli` network. Click `Continue` in the bottom right and then click on `Create Endpoint`. Copy the link given to you in `HTTP Provider` and add it to the `.env` file below for `QUICKNODE_HTTP_URL`.
 
@@ -451,7 +428,7 @@ QUICKNODE_HTTP_URL="add-quicknode-http-provider-url-here"
 PRIVATE_KEY="add-the-private-key-here"
 ```
 
-Now, let's write a deployment script to automatically deploy both our contracts for us. Create a new file, or replace the existing default one, named `deploy.js` under `hardhat-tutorial/scripts`, and add the following code:
+Now, let's write a deployment script to automatically deploy both our contracts for us. Create a new file, or replace the existing default one, named `deploy.js` under `backend/scripts`, and add the following code:
 
 ```javascript
 const { ethers } = require("hardhat");
@@ -491,7 +468,7 @@ main()
   });
 ```
 
-As you may have noticed, `deploy.js` imports a variable called `CRYPTODEVS_NFT_CONTRACT_ADDRESS` from a file named `constants`. Let's make that. Create a new file named `constants.js` in the `hardhat-tutorial` directory.
+As you may have noticed, `deploy.js` imports a variable called `CRYPTODEVS_NFT_CONTRACT_ADDRESS` from a file named `constants`. Let's make that. Create a new file named `constants.js` in the `backend` directory.
 
 ```javascript
 // Replace the value with your NFT contract address
@@ -521,7 +498,7 @@ module.exports = {
 };
 ```
 
-Let's make sure everything compiles before proceeding. Execute the following command from your Terminal within the `hardhat-tutorial` folder.
+Let's make sure everything compiles before proceeding. Execute the following command from your Terminal within the `backend` folder.
 
 ```bash
 npx hardhat compile
@@ -530,7 +507,7 @@ npx hardhat compile
 and make sure there are no compilation errors.
 If you do face compilation errors, try comparing your code against the [final version present here](https://github.com/LearnWeb3DAO/Building-a-DAO/blob/main/hardhat-tutorial/contracts/CryptoDevsDAO.sol)
 
-Let's deploy! Execute the following command in your Terminal from the `hardhat-tutorial` directory
+Let's deploy! Execute the following command in your Terminal from the `backend` directory
 
 ```bash
 npx hardhat run scripts/deploy.js --network goerli
@@ -544,40 +521,25 @@ Whew! So much coding!
 
 We've successfully developed and deployed our contracts to the Goerli Testnet. Now, it's time to build the Frontend interface so users can create and vote on proposals from the website.
 
-To develop the website, we will be using [Next.js](https://nextjs.org/) as we have so far, which is a meta-framework built on top of [React](https://reactjs.org/).
+Since we already have Next JS Frontend setup, we don't need to set it up manually on our own!
 
-Let's get started by creating a new `next` app. Your folder structure should look like this after setting up the `next` app:
+Let's start working on the Frontend by moving into the folder. Type the following commands in your Integrated Terminal inside VSCode :
 
-```bash
-- DAO-Tutorial
-    - hardhat-tutorial
-    - my-app
-```
-
-To create `my-app`, execute the following command in your Terminal within the `DAO-Tutorial` directory
+> Note : If you are already in the `backend` folder, then type `cd ..` to come out of the folder.
 
 ```bash
-npx create-next-app@latest
-```
-
-and press `Enter` for all the question prompts. This should create the `my-app` folder and setup a basic Next.js project.
-Let's see if everything works. Run the following in your Terminal
-
-```bash
-cd my-app
+cd frontend
 npm run dev
 ```
 
-Your website should be up and running at `http://localhost:3000`. However, this is a basic starter Next.js project and we need to add code for it to do what we want. Let's install the `web3modal` and `ethers` library. Web3Modal will allow us to support connecting to wallets in the browser, and Ethers will be used to interact with the blockchain. Run this in your Terminal from the `my-app` directory.
+> Note : The `frontend` folder is the same as `my-app` folder that you are used to.
 
-```bash
-npm install web3modal ethers
-```
+Your website should be up and running at [http://localhost:3000](http://localhost:3000). Make sure to keep an eye on the terminal to confirm what the URL is for the website.
 
 Download and save the following file as `0.svg` in `my-app/public/cryptodevs`. We will display this image on the webpage. NOTE: You need to create the `cryptodevs` folder inside `public`.
 [Download Image](https://github.com/LearnWeb3DAO/Building-a-DAO/blob/main/my-app/public/cryptodevs/0.svg)
 
-Add the following CSS styles in `my-app/styles/Home.modules.css`
+Add the following CSS styles in `frontend/styles/Home.modules.css`
 
 ```css
 .main {
@@ -665,7 +627,7 @@ Add the following CSS styles in `my-app/styles/Home.modules.css`
 }
 ```
 
-The website also needs to read/write data from two smart contracts - `CryptoDevsDAO` and `CryptoDevsNFT`. Let's store their contract addresses and ABIs in a constants file. Create a `constants.js` file in the `my-app` directory.
+The website also needs to read/write data from two smart contracts - `CryptoDevsDAO` and `CryptoDevsNFT`. Let's store their contract addresses and ABIs in a constants file. Create a `constants.js` file in the `frontend` directory.
 
 ```javascript
 export const CRYPTODEVS_DAO_CONTRACT_ADDRESS = "";
@@ -677,7 +639,7 @@ export const CRYPTODEVS_NFT_ABI = [];
 
 Replace the contract address and ABI values with your relevant contract addresses and ABIs.
 
-Now for the actual cool website code. Open up `my-app/pages/index.js` and write the following code. Explanation of the code can be found in the comments.
+Now for the actual cool website code. Open up `frontend/pages/index.js` and write the following code. Explanation of the code can be found in the comments.
 
 ```javascript
 import { Contract, providers } from "ethers";
@@ -1065,7 +1027,7 @@ export default function Home() {
 }
 ```
 
-Let's run it! In your terminal, from the `my-app` directory, execute:
+Let's run it! In your terminal, from the `frontend` directory, execute:
 
 ```bash
 npm run dev
@@ -1087,6 +1049,15 @@ Congratulations! Your CryptoDevs DAO website should now be working.
 
 Make sure to push all this code to Github before proceeding to the next step.
 
+1. Click [here](https://github.com/new) to create a new Repository.
+2. Go back to your VSCode and open up your terminal. It should be in the `DAO-Tutorial` folder.
+3. Type `git remote add origin https://github.com/yanukadeneth99/<your-repo-name>.git` while replacing the `<your-repo-name>` with Your Repository name.
+4. Change the branch to `main` by typing `git branch -M main`.
+5. Change the `README.md` file to your liking to show what you have done in the project. Note : This is the file that gets displayed when you visit a repository. Ex: [This](https://github.com/yanukadeneth99/Deeds/blob/master/README.md?plain=1) is the file, and [this](https://github.com/yanukadeneth99/Deeds) is what it looks like.
+6. Type `git add .` to add everything you did into [staging](https://www.w3schools.com/git/git_staging_environment.asp?remote=github).
+7. Type `git commit -m "Initial Commit"` to commit the changes you did. Feel free to type your own custom comment instead of *Initial Commit*.
+8. Type `git push -u origin main` to push the changes you did into GitHub.
+
 ### Website Deployment
 
 What good is a website if you cannot share it with others? Let's work on deploying your dApp to the world so you can share it with all your LearnWeb3DAO frens.
@@ -1095,11 +1066,9 @@ What good is a website if you cannot share it with others? Let's work on deployi
 - Click on the `New Project` button and select your `DAO-Tutorial` repo.
 - When configuring your new project, Vercel will allow you to customize your `Root Directory`
 - Since our Next.js application is within a subfolder of the repo, we need to modify it.
-- Click `Edit` next to `Root Directory` and set it to `my-app`.
+- Click `Edit` next to `Root Directory` and set it to `frontend`.
 - Select the framework as `Next.js`
 - Click `Deploy`
-
-![](https://i.imgur.com/YIOtTTR.png)
 
 - Now you can see your deployed website by going to your Vercel Dashboard, selecting your project, and copying the domain from there!
 
