@@ -24,7 +24,7 @@ Lets start building 🚀
 ## Prefer a Video?
 
 If you would rather learn from a video, we have a recording available of this tutorial on our YouTube. Watch the video by clicking on the screenshot below, or go ahead and read the tutorial!
-[![Whitelist dApp Part-1](https://i.imgur.com/QsVxGLq.png)](https://www.youtube.com/watch?v=eSS0vZ7rqpU&t=4757s "Whitelist dApp Tutorial")
+[![Whitelist dApp Part-1](https://i.imgur.com/QsVxGLq.png)](https://www.youtube.com/watch?v=eSS0vZ7rqpU "Whitelist dApp Tutorial")
 [![Whitelist dApp Part-2](https://i.imgur.com/084i0Sp.png)](https://www.youtube.com/watch?v=iMOAUkL09pU "Whitelist dApp Tutorial")
 
 ## Build
@@ -198,7 +198,7 @@ First, You will need to create a new `next` app. To create this `next-app`, in t
 npx create-next-app@latest
 ```
 
-and press `enter` for all the questions
+and press `enter` for all the questions. Choose `Javascript` instead of `Typescript` when asked.
 
 Your folder structure should look something like
 
@@ -524,7 +524,7 @@ export const WHITELIST_CONTRACT_ADDRESS = "YOUR_WHITELIST_CONTRACT_ADDRESS";
 export const abi = YOUR_ABI;
 ```
 
-Replace `"YOUR_WHITELIST_CONTRACT_ADDRESS"` with the address of the whitelist contract that you deployed. Replace `"YOUR_ABI"` with the ABI of your Whitelist Contract. To get the ABI for your contract, go to your `hardhat-tutorial/artifacts/contracts/Whitelist.sol` folder and from your `Whitelist.json` file get the array marked under the `"abi"` key (it will be. a huge array, close to 100 lines if not more).
+Replace `"YOUR_WHITELIST_CONTRACT_ADDRESS"` with the address of the whitelist contract that you deployed. Replace `"YOUR_ABI"` with the ABI of your Whitelist Contract. To get the ABI for your contract, go to your `hardhat-tutorial/artifacts/contracts/Whitelist.sol` folder and from your `Whitelist.json` file get the array marked under the `"abi"` key (it will be. a huge array, close to 100 lines not more).
 
 Now in your terminal which is pointing to `my-app` folder, execute
 
@@ -546,7 +546,7 @@ We will now deploy your dApp, so that everyone can see your website and you can 
 
 - Go to [Vercel](https://vercel.com/) and sign in with your GitHub
 - Then click on `New Project` button and then select your Whitelist dApp repo
-- ![](https://i.imgur.com/ZRjfkCE.png)
+![](https://i.imgur.com/bwwmDdH.png)
 - When configuring your new project, Vercel will allow you to customize your `Root Directory`
 - Click `Edit` next to `Root Directory` and set it to `my-app`
 - Select the Framework as `Next.js`
