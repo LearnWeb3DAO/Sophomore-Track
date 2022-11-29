@@ -807,7 +807,7 @@ export default function Home() {
               </div>
               {renderButton()}
               {/* Display additional withdraw button if connected wallet is owner */}
-                {walletConnected && isOwner ? (
+                {isOwner ? (
                   <div>
                   {loading ? <button className={styles.button}>Loading...</button>
                            : <button className={styles.button} onClick={withdrawCoins}>
