@@ -32,6 +32,8 @@ Lets start building 🚀
 To build the smart contract we would be using [Hardhat](https://hardhat.org/).
 Hardhat is an Ethereum development environment and framework designed for full stack development in Solidity. In simple words you can write your smart contract, deploy them, run tests, and debug your code.
 
+Create a folder for this project named `DEX-Tutorial`, and open up a Terminal window in that folder.
+
 To setup a Hardhat project, Open up a terminal and execute these commands
 
 ```bash
@@ -110,17 +112,17 @@ function getReserve() public view returns (uint) {
 }
 ```
 
-Time to create an `addLiquidity` function which would add `liquidity` in the form of `ETH` and `Crypto Dev tokens` to our contract
+Time to create an `addLiquidity` function which would add `liquidity` in the form of `ETH` and `Crypto Dev tokens` to our contract.
 
-If `cryptoDevTokenReserve` is zero it means that it is the first time someone is adding `Crypto Dev` tokens and `ETH` to the contract. In this case, we don't have to maintain a ratio between the tokens as we dont have any liquidity. So we accept any amount of tokens that user has sent with the initial call
+If `cryptoDevTokenReserve` is zero it means that it is the first time someone is adding `Crypto Dev` tokens and `ETH` to the contract. In this case, we don't have to maintain a ratio between the tokens as we dont have any liquidity. So we accept any amount of tokens that user has sent with the initial call.
 
 If `cryptoDevTokenReserve` is not zero, then we have to make sure that when someone adds the liquidity it does not impact the price which the market currently has. To ensure this, we maintain a ratio which has to remain constant. The ratio is `(cryptoDevTokenAmount user can add/cryptoDevTokenReserve in the contract) = (Eth Sent by the user/Eth Reserve in the contract)`.
 
 This ratio decides how much `Crypto Dev` tokens user can supply given a certain amount of ETH. When user adds liquidity, we need to provide him with some `LP` tokens because we need to keep track of the amount of liquidity he has supplied to the contract. The amount of `LP` tokens that get minted to the user are proportional to the `ETH` supplied by the user.
 
-In the initial liquidity case, when there is no liquidity: The amount of `LP` tokens that would be minted to the user is equal to the `ETH` balance of the contract (because balance is equal to the `ETH` sent by the user in the `addLiquidity` call)
+In the initial liquidity case, when there is no liquidity: The amount of `LP` tokens that would be minted to the user is equal to the `ETH` balance of the contract (because balance is equal to the `ETH` sent by the user in the `addLiquidity` call).
 
-When there is already liquidity in the contract, the amount of `LP` tokens that get minted is based on a ratio. The ratio is `(LP tokens to be sent to the user (liquidity) / totalSupply of LP tokens in contract) = (Eth sent by the user) / (Eth reserve in the contract)`
+When there is already liquidity in the contract, the amount of `LP` tokens that get minted is based on a ratio. The ratio is `(LP tokens to be sent to the user (liquidity) / totalSupply of LP tokens in contract) = (Eth sent by the user) / (Eth reserve in the contract)`.
 
 > If this seems a bit confusing to you, open up the previous theory lesson again and review the mathematics behind the xy = k price function and LP tokens.
 
@@ -624,7 +626,7 @@ npm run dev
 
 Now go to `http://localhost:3000`, your app should be running 🤘
 
-Now lets install Web3Modal library(https://github.com/Web3Modal/web3modal). Web3Modal is an easy-to-use library to help developers add support for multiple providers in their apps with a simple customizable configuration. By default Web3Modal Library supports injected providers like (Metamask, Dapper, Gnosis Safe, Frame, Web3 Browsers, etc), You can also easily configure the library to support Portis, Fortmatic, Squarelink, Torus, Authereum, D'CENT Wallet and Arkane.
+Now lets install [Web3Modal library](https://github.com/Web3Modal/web3modal). Web3Modal is an easy-to-use library to help developers add support for multiple providers in their apps with a simple customizable configuration. By default Web3Modal Library supports injected providers like (Metamask, Dapper, Gnosis Safe, Frame, Web3 Browsers, etc), You can also easily configure the library to support Portis, Fortmatic, Squarelink, Torus, Authereum, D'CENT Wallet and Arkane.
 Open up a terminal pointing at`my-app` directory and execute this command
 
 ```bash
