@@ -39,13 +39,13 @@ The Proof of Stake system has a variety of improvements over Proof of Work.
 
 ### Block Production
 
-Under Proof of Stake, validators are responsible for occasionally creating new blocks, and rest of the times validating blocks produced by other validators.
+Under Proof of Stake, validators are responsible for occasionally creating new blocks. The rest of the time, they validate blocks produced by other validators.
 
 To become a validator, a user must deposit 32 ETH into the deposit contract, and run the required node software - an execution client, a consensus client, and a validator client.
 
 > NOTE: While 32 ETH may seem like a high cost to run a validator node, it is significantly less than what miners were spending in PoW, and is also significantly less than costs of being a validator on other PoS blockchains.
 
-Then, validators will receive new blocks from peers on the Ethereum network. The validator re-executes the transactions in that block, and confirms that the block is valid. Then they send an attestation (a vote) in favor of the block across the network. If enough votes are collected in favor of the block, the block is added to the chain, and then we rinse and repeat for the next block.
+Then, validators will receive new blocks from peers on the Ethereum network. The validator re-executes the transactions in that block, and confirms that the block is valid. Then they send an attestation (a vote) in favor of the block across the network. If enough votes are collected in favor of the block, the block is added to the chain. This process is repeated for future blocks.
 
 Every 12 seconds, the time of a new block on Ethereum, a validator is randomly selected to be a block proposer. If selected as a proposer, this validator is responsible for creating a new block and sending it out to the other nodes, which then can vote in favor of or against that block.
 
@@ -55,7 +55,7 @@ Every 12 seconds, the time of a new block on Ethereum, a validator is randomly s
 
 Becoming a validator is a commitment towards helping secure the Ethereum network. The validator is expected to maintain sufficient hardware, internet connectivity, and uptime to participate in block proposal and validation. In return, the validator is paid rewards in ETH.
 
-If a validator fails to meet it's commitments, they miss out on ETH rewards. By failing to participate when called upon (asked to vote on a block, for example) they fail to get the ETH reward. If they behave dishonestly or maliciously, then their stake can also be slashed leading to a financial loss and them being kicked out from the position of being a validator.
+If a validator fails to meet its commitments, they miss out on ETH rewards. By failing to participate when called upon (asked to vote on a block, for example) they fail to get the ETH reward. If they behave dishonestly or maliciously, then their stake can also be slashed, leading to a financial loss and them being kicked out from being a validator.
 
 Behaving maliciously could include things like proposing multiple blocks in a single 12 second time period, or submitting false attestations during block validations. The amount of ETH that gets slashed by doing such malicious activities depends on how many _other_ validators also got slashed around the same time. This is because a single validator's internet connection going out shouldn't have the same penalty as 100 validators coordinating to act maliciously together as an attack to the network.
 
@@ -81,17 +81,17 @@ Proof of Stake protects against Sybil attacks by making validators put up their 
 
 ### Chain Selection Rules
 
-Occasionally, due to internet latency issues or something, it is possible for validators to have two different views of the head (current state) of the blockchain, and therefore two different views towards what constitutes a valid new block. The technical term for this is called a **fork**.
+Occasionally, due to issues such as internet latency, it is possible for validators to have two different views of the head (current state) of the blockchain, and therefore two different views of what constitutes a valid new block. The technical term for this is called a **fork**.
 
 Normally, when the network is performing optimally and honestly, there is only one block at the head of the chain, and all validators agree on that state.
 
 <Quiz questionId="0f2b642a-ea18-4dc8-bfc8-3d34995a7e26" />
 
-In the case however the first scenario happens, and different validators end up with different views of the head of the chain, a way to converge back to a single chain and therefore a single state is important. The "correct chain" needs to be chosen to prevent the splitting of state and a fork to continue.
+In the case where different validators end up with different views of the head of the chain, a way to converge back to a single chain and therefore a single state is important. The "correct chain" needs to be chosen to prevent the splitting of state and a fork to continue.
 
-To do this, Ethereum uses an algorithm called [LMD-GHOST](https://arxiv.org/pdf/2003.03052.pdf) which works to identify which fork has the greatest amount of assestations in it's history. So for example, if the chain splits into two forks at a point, and different validators believe differently, LMD-GHOST will figure out which of the two forks received a higher number of attestations i.e. was approved by more validators on the network, and then all validators will converge on resuming from that fork and say goodbye to the other one.
+To do this, Ethereum uses an algorithm called [LMD-GHOST](https://arxiv.org/pdf/2003.03052.pdf) which works to identify which fork has the greatest amount of attestations in its history. For example, if the chain splits into two forks at a point, and different validators believe differently, LMD-GHOST will figure out which of the two forks received a higher number of attestations i.e. was approved by more validators on the network, and then all validators will converge on resuming from that fork and say goodbye to the other one.
 
-Occasionally, this algorithm also means that transactions which get validated as part of a temporary fork may be rolled back once the fork is gotten rid of in favour of a different fork. This introduces the concept of **Finality**.
+Occasionally, this algorithm also means that transactions which get validated as part of a temporary fork may be rolled back once the fork is replaced in favour of a different fork. This introduces the concept of **Finality**.
 
 ### Finality
 
@@ -118,9 +118,9 @@ Aside from costing a massive amount of money, the consensus mechanism does have 
 
 ### The Downsides
 
-Not all is rainbows and unicorns in this world however, and with it's many advantages, PoS does have a few cons that continue to make consensus mechanisms an active field of research and innovation.
+Not all is rainbows and unicorns however. With its many advantages, PoS does have a few cons that continue to make consensus mechanisms an active field of research and innovation.
 
-1. Proof of Stake is younger and less battle-tested than Proof of Work, which has stood the test of time ever since Bitcoin was created till date.
+1. Proof of Stake is younger and less battle-tested than Proof of Work, which has stood the test of time ever since Bitcoin was created.
 2. Proof of Stake protocols are much more complex to implement in code, technically, which also increases the surface area for possible bugs and issues to arise.
 
 Due to this, many in the Ethereum community (and outside) are still actively researching and working on ways to keep improving consensus mechanisms.
