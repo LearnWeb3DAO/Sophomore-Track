@@ -118,10 +118,10 @@ Aside from costing a massive amount of money, the consensus mechanism does have 
 
 ### The Downsides
 
-With its many advantages, PoS does have a few cons that continue to make consensus mechanisms an active field of research and innovation.
+Not all is rainbows and unicorns however. With its many advantages, PoS does have a few cons that continue to make consensus mechanisms an active field of research and innovation.
 
 1. Proof of Stake is younger and less battle-tested than Proof of Work, which has stood the test of time ever since Bitcoin was created.
-2. Proof of Stake protocols are much more complex to implement in code, technically, which also increases the surface area for possible bugs and issues.
+2. Proof of Stake protocols are much more complex to implement in code, technically, which also increases the surface area for possible bugs and issues to arise.
 
 Due to this, many in the Ethereum community (and outside) are still actively researching and working on ways to keep improving consensus mechanisms.
 
