@@ -1,8 +1,8 @@
-# Build a DAO for your NFT holders
+# 🤩 Build a DAO for your NFT holders
 
 ![](https://i.imgur.com/6uXR2G9.png)
 
-## What is a DAO?
+## 🧐 What is a DAO?
 
 DAO stands for **D**ecentralized **A**utonomous **O**rganization. You can think of DAOs as analogous to companies in the real world. Essentially, DAOs allow for members to create and vote on governance decisions.
 
@@ -10,13 +10,13 @@ In traditional companies, when a decision needs to be made, the board of directo
 
 Membership in DAOs is typically restricted either by ownership of ERC20 tokens, or by ownership of NFTs. Examples of DAOs where membership and voting power is proportional to how many tokens you own include [Uniswap](https://uniswap.org) and [ENS](https://ens.domains). Examples of DAOs where they are based on NFTs include [Meebits DAO](https://www.meebitsdao.world/).
 
-## Building our DAO
+## 🔨 Building our DAO
 
 You want to launch a DAO for holders of your `CryptoDevs` NFTs. From the ETH that was gained through the ICO, you built up a DAO Treasury. The DAO now has a lot of ETH, but currently does nothing with it.
 
 You want to allow your NFT holders to create and vote on proposals to use that ETH for purchasing other NFTs from an NFT marketplace, and speculate on price. Maybe in the future when you sell the NFT back, you split the profits among all members of the DAO.
 
-## Requirements
+## 📝 Requirements
 
 - Anyone with a `CryptoDevs` NFT can create a proposal to purchase a different NFT from an NFT marketplace
 - Everyone with a `CryptoDevs` NFT can vote for or against the active proposals
@@ -24,20 +24,20 @@ You want to allow your NFT holders to create and vote on proposals to use that E
 - Voter cannot vote multiple times on the same proposal with the same NFT
 - If majority of the voters vote for the proposal by the deadline, the NFT purchase is automatically executed
 
-## What we will make
+## 🔩 What we will make
 
 - To be able to purchase NFTs automatically when a proposal is passed, you need an on-chain NFT marketplace that you can call a `purchase()` function on. There exist a lot of NFT marketplaces out there, but to avoid overcomplicating things, we will create a simplified fake NFT marketplace for this tutorial as the focus is on the DAO.
 - We will also make the actual DAO smart contract using Hardhat.
 - We will make the website using Next.js to allow users to create and vote on proposals
 
-## Prerequisites
+## 🌡 Prerequisites
 
 - You have completed the `NFT Collection` tutorial from earlier.
 - You must have some ETH to give to the DAO Treasury
 
-## BUIDL IT
+## 🛠 BUIDL IT
 
-### Setup our Project
+### 📌 Setup our Project
 
 In the previous tutorials we have setup Hardhat and Next JS seperately. Now we're gonna use a nifty trick to install them together so that we don't have to worry about installing and configuring them ourselves. 
 
@@ -51,7 +51,7 @@ npx @startertemp/nextjs-hardhat DAO-Tutorial
 
 > If this is your first time using this, you will be prompted whether you want to install `@startertemp/nextjs-hardhat`. Make sure you confirm yes to that by typing out `y`.
 
-*You can use [this guide](#) to understand this project more or checkout [this repository](https://github.com/startertemp/nextjs-hardhat) to understand how it works*
+*You can use [this guide](https://blog.asciix.com/getting-started-with-statertemp-nextjs-hardhat/) to understand this project more or checkout [this repository](https://github.com/startertemp/nextjs-hardhat) to understand how it works*
 
 ![StaterTempExecutionSS](https://i.imgur.com/t1eQ2AS.png)
 
@@ -68,7 +68,7 @@ code .
 
 > Fun Fact : It's important to make sure your plugins are up-to-date by running `npm update`. Just make sure the updates you want won't break your code. For startertemp we have set the versions so it should be okay to update. You can read more about it [here](https://docs.npmjs.com/updating-packages-downloaded-from-the-registry#updating-local-packages).
 
-### Smart Contract Development
+### 🧮 Smart Contract Development
 
 We will start off with first creating the smart contracts. We will be making two smart contracts:
 
@@ -408,7 +408,7 @@ receive() external payable {}
 fallback() external payable {}
 ```
 
-### Smart Contract Deployment
+### 🔮 Deploying our Contract
 
 Now that we have written both our contracts, let's deploy them to the [Goerli Testnet](https://goerli.etherscan.com). Ensure you have some ETH on the Goerli Testnet.
 
@@ -515,7 +515,7 @@ npx hardhat run scripts/deploy.js --network goerli
 
 - Save the `FakeNFTMarketplace` and `CryptoDevsDAO` contract addresses that get printed in your Terminal. You will need those later.
 
-### Frontend Development
+### 🧸 Frontend Development
 
 Whew! So much coding!
 
@@ -1037,7 +1037,7 @@ to see your website in action. It should look like the screenshot at the beginni
 
 Congratulations! Your CryptoDevs DAO website should now be working.
 
-### Testing
+### 🔬 Testing
 
 - Create a couple of proposals
 - Try voting `YAY` on one, and `NAY` on the other
@@ -1045,7 +1045,7 @@ Congratulations! Your CryptoDevs DAO website should now be working.
 - Execute both of them.
 - Watch the balance of the DAO Treasury go down by `0.1 ETH` due to the proposal which passed as it bought an NFT upon execution.
 
-### Push to Github
+### 🎞 Push to Github
 
 Make sure to push all this code to Github before proceeding to the next step.
 
@@ -1058,7 +1058,7 @@ Make sure to push all this code to Github before proceeding to the next step.
 7. Type `git commit -m "Initial Commit"` to commit the changes you did. Feel free to type your own custom comment instead of *Initial Commit*.
 8. Type `git push -u origin main` to push the changes you did into GitHub.
 
-### Website Deployment
+### 📽 Website Deployment
 
 What good is a website if you cannot share it with others? Let's work on deploying your dApp to the world so you can share it with all your LearnWeb3DAO frens.
 
@@ -1072,6 +1072,6 @@ What good is a website if you cannot share it with others? Let's work on deployi
 
 - Now you can see your deployed website by going to your Vercel Dashboard, selecting your project, and copying the domain from there!
 
-### CONGRATULATIONS! You're all done!
+### 🏆 CONGRATULATIONS! You're all done!
 
 Hopefully you enjoyed this tutorial. Don't forget to share your DAO website in the `#showcase` channel on Discord :D
