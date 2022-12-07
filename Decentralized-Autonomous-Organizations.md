@@ -597,6 +597,7 @@ Add the following CSS styles in `my-app/styles/Home.modules.css`
   width: 200px;
   cursor: pointer;
   margin-right: 2%;
+  margin-bottom: 2%;
 }
 
 .button2 {
@@ -1069,7 +1070,7 @@ export default function Home() {
           </div>
           {renderTabs()}
           {/* Display additional withdraw button if connected wallet is owner */}
-          {walletConnected && isOwner ? (
+          {isOwner ? (
             <div>
             {loading ? <button className={styles.button}>Loading...</button>
                      : <button className={styles.button} onClick={withdrawDAOEther}>
