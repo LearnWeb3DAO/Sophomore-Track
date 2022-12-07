@@ -382,7 +382,9 @@ The `Ownable` contract we inherit from contains a modifier `onlyOwner` which res
 ```solidity
 /// @dev withdrawEther allows the contract owner (deployer) to withdraw the ETH from the contract
 function withdrawEther() external onlyOwner {
-    payable(owner()).transfer(address(this).balance);
+    uint256 amount = address(this).balance;
+    require(amount > 0, "Nothing to withdraw; contract balance empty");
+    payable(owner()).transfer(amount);
 }
 ```
 
@@ -595,6 +597,7 @@ Add the following CSS styles in `my-app/styles/Home.modules.css`
   width: 200px;
   cursor: pointer;
   margin-right: 2%;
+  margin-bottom: 2%;
 }
 
 .button2 {
@@ -681,6 +684,8 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   // True if user has connected their wallet, false otherwise
   const [walletConnected, setWalletConnected] = useState(false);
+  // isOwner gets the owner of the contract through the signed address
+  const [isOwner, setIsOwner] = useState(false);
   const web3ModalRef = useRef();
 
   // Helper function to connect wallet
@@ -690,6 +695,46 @@ export default function Home() {
       setWalletConnected(true);
     } catch (error) {
       console.error(error);
+    }
+  };
+  
+  /**
+   * getOwner: gets the contract owner by connected address
+   */
+  const getDAOOwner = async () => {
+    try {
+        const signer   = await getProviderOrSigner(true);
+        const contract = getDaoContractInstance(signer);
+
+        // call the owner function from the contract
+        const _owner  = await contract.owner();
+        // Get the address associated to signer which is connected to Metamask
+        const address = await signer.getAddress();
+        if (address.toLowerCase() === _owner.toLowerCase()) {
+          setIsOwner(true);
+        }
+    } catch (err) {
+      console.error(err.message);
+    }
+  };
+
+  /**
+   * withdrawCoins: withdraws ether by calling
+   * the withdraw function in the contract
+   */
+  const withdrawDAOEther = async () => {
+    try {
+      const signer   = await getProviderOrSigner(true);
+      const contract = getDaoContractInstance(signer);
+
+      const tx = await contract.withdrawEther();
+      setLoading(true);
+      await tx.wait();
+      setLoading(false);
+      getDAOTreasuryBalance();
+    } catch (err) {
+      console.error(err);
+      window.alert(err.reason);
     }
   };
 
@@ -814,6 +859,7 @@ export default function Home() {
       await txn.wait();
       setLoading(false);
       await fetchAllProposals();
+      getDAOTreasuryBalance();
     } catch (error) {
       console.error(error);
       window.alert(error.data.message);
@@ -875,6 +921,7 @@ export default function Home() {
         getDAOTreasuryBalance();
         getUserNFTBalance();
         getNumProposalsInDAO();
+        getDAOOwner();
       });
     }
   }, [walletConnected]);
@@ -1022,6 +1069,17 @@ export default function Home() {
             </button>
           </div>
           {renderTabs()}
+          {/* Display additional withdraw button if connected wallet is owner */}
+          {isOwner ? (
+            <div>
+            {loading ? <button className={styles.button}>Loading...</button>
+                     : <button className={styles.button} onClick={withdrawDAOEther}>
+                         Withdraw DAO ETH
+                       </button>
+            }
+            </div>
+            ) : ("")
+          }
         </div>
         <div>
           <img className={styles.image} src="/cryptodevs/0.svg" />
