@@ -843,7 +843,7 @@ Now you can see your deployed website by going to your dashboard, selecting your
 
 ## View your Collection on Opensea
 
-Now lets make sure your collection is available on Opensea
+Now let's make sure your collection is available on Opensea
 
 To make the collection available on Opensea, we would need to create a metadata endpoint. This endpoint would return the metadata for an NFT given its `tokenId`.
 
