@@ -11,7 +11,7 @@ Now its time for you to launch your own NFT collection - `Crypto Devs`.
 - Whitelisted users, should have a 5 min presale period before the actual sale where they are guaranteed 1 NFT per transaction.
 - There should be a website for your NFT Collection.
 
-Lets start building 🚀
+Let's start building 🚀
 
 ## Prerequisites
 
@@ -89,7 +89,7 @@ interface IWhitelist {
 }
 ```
 
-Now lets create a new file inside the `contracts` directory and call it `CryptoDevs.sol`
+Now let's create a new file inside the `contracts` directory and call it `CryptoDevs.sol`
 
 ```go
 // SPDX-License-Identifier: MIT
@@ -233,7 +233,7 @@ QUICKNODE_HTTP_URL="add-quicknode-http-provider-url-here"
 PRIVATE_KEY="add-the-private-key-here"
 ```
 
-Lets deploy the contract to the `goerli` network. Create a new file, or replace the default file, named `deploy.js` under the `scripts` folder
+Let's deploy the contract to the `goerli` network. Create a new file, or replace the default file, named `deploy.js` under the `scripts` folder
 
 Let's write some code to deploy the contract in `deploy.js` file.
 
@@ -259,6 +259,9 @@ async function main() {
     whitelistContract
   );
 
+  // Wait for it to finish deploying
+  await deployedCryptoDevsContract.deployed();
+
   // print the address of the deployed contract
   console.log(
     "Crypto Devs Contract Address:",
@@ -275,7 +278,7 @@ main()
   });
 ```
 
-As you can see, `deploy.js` requires some constants. Lets create a folder named `constants` under the `hardhat-tutorial` folder. Create an `index.js` file inside the `constants` folder and add the following lines to the file. Replace "address-of-the-whitelist-contract" with the address of the whitelist contract that you deployed in the previous tutorial. For Metadata_URL, just copy the sample one that has been provided. We would replace this further down in the tutorial.
+As you can see, `deploy.js` requires some constants. Let's create a folder named `constants` under the `hardhat-tutorial` folder. Create an `index.js` file inside the `constants` folder and add the following lines to the file. Replace "address-of-the-whitelist-contract" with the address of the whitelist contract that you deployed in the previous tutorial. For Metadata_URL, just copy the sample one that has been provided. We would replace this further down in the tutorial.
 
 ```js
 // Address of the Whitelist Contract that you deployed
@@ -348,7 +351,7 @@ npm run dev
 
 Now go to `http://localhost:3000`, your app should be running 🤘
 
-Now lets install Web3Modal library(https://github.com/Web3Modal/web3modal). Web3Modal is an easy-to-use library to help developers add support for multiple providers in their apps with a simple customizable configuration. By default Web3Modal Library supports injected providers like (Metamask, Dapper, Gnosis Safe, Frame, Web3 Browsers, etc), You can also easily configure the library to support Portis, Fortmatic, Squarelink, Torus, Authereum, D'CENT Wallet and Arkane.
+Now let's install Web3Modal library(https://github.com/Web3Modal/web3modal). Web3Modal is an easy-to-use library to help developers add support for multiple providers in their apps with a simple customizable configuration. By default Web3Modal Library supports injected providers like (Metamask, Dapper, Gnosis Safe, Frame, Web3 Browsers, etc), You can also easily configure the library to support Portis, Fortmatic, Squarelink, Torus, Authereum, D'CENT Wallet and Arkane.
 Open up a terminal pointing at`my-app` directory and execute this command
 
 ```bash
@@ -872,7 +875,7 @@ export default function handler(req, res) {
 
 Now you have an API route that OpenSea, and other websites, can call to retrieve the metadata for the NFT. Those websites first call `tokenURI` on the smart contract to get the link of where the NFT metadata is stored. `tokenURI` will give them your API route we just created. Then, they can call this API route to get the name, description, and image for the NFT.
 
-Lets deploy a new version of the `Crypto Devs` contract with this new API route as your `METADATA_URL`
+Let's deploy a new version of the `Crypto Devs` contract with this new API route as your `METADATA_URL`
 
 Open your `hardhat-tutorial/constants` folder and inside your `index.js` file, replace "https://nft-collection-sneh1999.vercel.app/api/" with the domain which you saved to notepad and add "/api/" to its end.
 
