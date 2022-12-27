@@ -153,7 +153,7 @@ Create another file inside the `contracts` directory and call it `CryptoDevToken
           // Get the number of CryptoDev NFT's held by a given sender address
           uint256 balance = CryptoDevsNFT.balanceOf(sender);
           // If the balance is zero, revert the transaction
-          require(balance > 0, "You dont own any Crypto Dev NFT's");
+          require(balance > 0, "You don't own any Crypto Dev NFT");
           // amount keeps track of number of unclaimed tokenIds
           uint256 amount = 0;
           // loop over the balance and get the token ID owned by `sender` at a given `index` of its token list.
@@ -179,7 +179,7 @@ Create another file inside the `contracts` directory and call it `CryptoDevToken
         */
       function withdraw() public onlyOwner {
         uint256 amount = address(this).balance;
-        require(amount > 0, "Nothing to withdraw; contract balance empty");
+        require(amount > 0, "Nothing to withdraw, contract balance empty");
         
         address _owner = owner();
         (bool sent, ) = _owner.call{value: amount}("");
