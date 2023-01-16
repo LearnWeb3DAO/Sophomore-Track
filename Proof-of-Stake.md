@@ -32,7 +32,7 @@ With the stake in place, lying as a validator can cause you to lose your staked 
 The Proof of Stake system has a variety of improvements over Proof of Work.
 
 - Significantly less energy usage - moving Ethereum from PoW to PoS reduced the world's energy usage by 0.2%. On the scale of the entire world, that's a LOT of energy that was saved.
-- Lower barrier to entry - in PoW miners needed to have expensive, specialized hardware to produce new blocks. This is no longer the case with PoS and the hardware requirements are much more "average joe" affordable.
+- Lower barrier to entry - in PoW miners needed to have expensive, specialized hardware to produce new blocks. This is no longer the case with PoS and the hardware requirements are much more "average job" affordable.
 - Reduced centralization risk - due to the cost and specialized knowledge of setting up mining farms in PoW, there was a centralization risk associated with Ethereum being a PoW network. With PoS, since validators just need to stake some capital up front with much more reasonable hardware requirements, it should lead to much more nodes securing the network than in PoW
 - Reduced ETH issuance - due to low energy requirements, less ETH is required as a reward to incentivize validators leading to an overall reduced ETH issuance that decreases inflation on the network
 - Economic penalties for 51% attacks are exponentially more costly with the required staked capital up front compared to cost of hardware on PoW
