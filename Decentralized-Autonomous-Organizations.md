@@ -464,7 +464,7 @@ main()
   });
 ```
 
-As you may have noticed, `deploy.js` imports a variable called `CRYPTODEVS_NFT_CONTRACT_ADDRESS` from a file named `constants`. Let's make that. Create a new file named `constants.js` in the `hardhat-tutorial` directory.
+As you may have noticed, `deploy.js` imports a variable called `CRYPTODEVS_NFT_CONTRACT_ADDRESS` from a file named `constants`. Let's make that. Create a new file named `index.js` in the `hardhat-tutorial` directory.
 
 ```javascript
 // Replace the value with your NFT contract address
