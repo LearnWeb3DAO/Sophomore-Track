@@ -47,7 +47,7 @@ Then, in Whitelist-Dapp folder, we will set up a Hardhat project
 mkdir hardhat-tutorial
 cd hardhat-tutorial
 npm init --yes
-npm install --save-dev hardhat
+npm install --save-dev hardhat @nomicfoundation/hardhat-toolbox
 ```
 
 In the same directory where you installed Hardhat run:
