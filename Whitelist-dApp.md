@@ -49,6 +49,11 @@ cd hardhat-tutorial
 npm init --yes
 npm install --save-dev hardhat
 ```
+If you are a Windows User, you'll have to add one more dependency. It is given below:
+
+```bash 
+npm install --save-dev @nomicfoundation/hardhat-toolbox
+```
 
 In the same directory where you installed Hardhat run:
 
