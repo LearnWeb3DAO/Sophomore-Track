@@ -308,6 +308,10 @@ module.exports = {
   },
 };
 ```
+Before compiling our smart contract, we may need to install the Hardhat tools, "npm install --save-dev @nomicfoundation/hardhat-toolbox" is a command used to install a package called "hardhat-toolbox" from the "@nomicfoundation" organization as a development dependency in a Node.js project. This package provides a set of utilities and plugins for the Hardhat Ethereum development environment, which is a tool that allows developers to easily test and deploy smart contracts on a local Ethereum network. The "--save-dev" flag indicates that this package is intended to be used for development purposes only, and will not be needed in production.
+```bash
+npm install --save-dev @nomicfoundation/hardhat-toolbox
+```
 
 Compile the contract, open up a terminal pointing at `hardhat-tutorial` directory and execute this command
 
