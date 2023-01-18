@@ -792,7 +792,7 @@ export default function Home() {
       setLoading(false);
     } catch (error) {
       console.error(error);
-      window.alert(error.data.message);
+      window.alert(error.reason);
     }
   };
 
@@ -849,7 +849,7 @@ export default function Home() {
       await fetchAllProposals();
     } catch (error) {
       console.error(error);
-      window.alert(error.data.message);
+      window.alert(error.reason);
     }
   };
 
@@ -867,7 +867,7 @@ export default function Home() {
       getDAOTreasuryBalance();
     } catch (error) {
       console.error(error);
-      window.alert(error.data.message);
+      window.alert(error.reason);
     }
   };
 
