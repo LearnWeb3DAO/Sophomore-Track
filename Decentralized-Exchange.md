@@ -11,11 +11,11 @@ Now its time for you to launch a DeFi Exchange for your `Crypto Dev` tokens
 ## Requirements
 
 - Build an exchange with only one asset pair (Eth / Crypto Dev)
-- Your Decentralized Exchange should take a fees of `1%` on swaps
+- Your Decentralized Exchange should take a fee of `1%` on swaps
 - When user adds liquidity, they should be given `Crypto Dev LP` tokens (Liquidity Provider tokens)
 - CD LP tokens should be given proportional to the `Ether` user is willing to add to the liquidity
 
-Lets start building 🚀
+Let's start building 🚀
 
 ---
 
@@ -62,7 +62,7 @@ npm install @openzeppelin/contracts
 
 Create a new file inside the `contracts` directory called `Exchange.sol`. In this tutorial we would cover each part of the contract separately.
 
-First lets start by importing `ERC20.sol` We need this because our Exchange needs to mint and create `Crypto Dev LP` tokens thats why it needs to inherit ERC20.sol
+First let's start by importing `ERC20.sol` We need this because our Exchange needs to mint and create `Crypto Dev LP` tokens that's why it needs to inherit ERC20.sol
 
 ```go
 // SPDX-License-Identifier: MIT
@@ -74,7 +74,7 @@ contract Exchange is ERC20 {
 }
 ```
 
-Now lets create a `constructor` for our contract
+Now let's create a `constructor` for our contract
 
 - It takes the address of the `_CryptoDevToken` that you deployed in the `ICO` tutorial as an input param
 - It then checks if the address is a null address
@@ -102,7 +102,7 @@ Now lets create a `constructor` for our contract
 Time to create a function to get reserves of the `Eth` and `Crypto Dev` tokens held
 by the contract.
 
-The ETH reserve would be equal to the balance of the contract and can be found using `address(this).balance` so lets just create a function only for getting reserves of the `Crypto Dev` tokens
+The ETH reserve would be equal to the balance of the contract and can be found using `address(this).balance` so let's just create a function only for getting reserves of the `Crypto Dev` tokens
 
 We know that the `Crypto Dev Token` contract that we deployed is an ERC20. So we can just call the `balanceOf` to check the balance of `CryptoDev Tokens` that the contract holds
 
@@ -117,7 +117,7 @@ function getReserve() public view returns (uint) {
 
 Time to create an `addLiquidity` function which would add `liquidity` in the form of `ETH` and `Crypto Dev tokens` to our contract.
 
-If `cryptoDevTokenReserve` is zero it means that it is the first time someone is adding `Crypto Dev` tokens and `ETH` to the contract. In this case, we don't have to maintain a ratio between the tokens as we dont have any liquidity. So we accept any amount of tokens that user has sent with the initial call.
+If `cryptoDevTokenReserve` is zero it means that it is the first time someone is adding `Crypto Dev` tokens and `ETH` to the contract. In this case, we don't have to maintain a ratio between the tokens as we don't have any liquidity. So we accept any amount of tokens that user has sent with the initial call.
 
 If `cryptoDevTokenReserve` is not zero, then we have to make sure that when someone adds the liquidity it does not impact the price which the market currently has. To ensure this, we maintain a ratio which has to remain constant. The ratio is `(cryptoDevTokenAmount user can add/cryptoDevTokenReserve in the contract) = (Eth Sent by the user/Eth Reserve in the contract)`.
 
@@ -184,7 +184,7 @@ function addLiquidity(uint _amount) public payable returns (uint) {
 }
 ```
 
-Now lets create a function for removing liquidity from the contract.
+Now let's create a function for removing liquidity from the contract.
 
 The amount of ether that would be sent back to the user would be based on a ratio. The ratio is `(Eth sent back to the user) / (current Eth reserve) = (amount of LP tokens that user wants to withdraw) / (total supply of LP tokens)`.
 
@@ -226,11 +226,11 @@ function removeLiquidity(uint _amount) public returns (uint , uint) {
 }
 ```
 
-Next lets implement the swap functionality
+Next let's implement the swap functionality
 
 Swap would go two ways. One way would be `Eth` to `Crypto Dev` tokens and other would be `Crypto Dev` to `Eth`
 
-Its important for us to determine: Given `x` amount of `Eth`/`Crypto Dev` token sent by the user, how many `Eth`/`Crypto Dev` tokens would he receive from the swap?
+It's important for us to determine: Given `x` amount of `Eth`/`Crypto Dev` token sent by the user, how many `Eth`/`Crypto Dev` tokens would he receive from the swap?
 
 So let's create a function which calculates this:
 
@@ -266,7 +266,7 @@ function getAmountOfTokens(
 }
 ```
 
-Now lets implement a function to swap `ETH` for `Crypto Dev` tokens
+Now let's implement a function to swap `ETH` for `Crypto Dev` tokens
 
 ```go
 /**
@@ -292,7 +292,7 @@ function ethToCryptoDevToken(uint _minTokens) public payable {
 }
 ```
 
-Now lets implement a function to swap `Crypto Dev` tokens to `ETH`
+Now let's implement a function to swap `Crypto Dev` tokens to `ETH`
 
 ```go
 /**
@@ -520,7 +520,7 @@ QUICKNODE_HTTP_URL="add-quicknode-http-provider-url-here"
 PRIVATE_KEY="add-the-private-key-here"
 ```
 
-Lets also create a constants folder to keep track of any constants we have. Under the `hardhat-tutorial` folder create a new folder named `constants` and under the `constants` folder create a new file `index.js`
+Let's also create a constants folder to keep track of any constants we have. Under the `hardhat-tutorial` folder create a new folder named `constants` and under the `constants` folder create a new file `index.js`
 
 Inside the `index.js` file add the following lines of code. Remember to replace `ADDRESS-OF-CRYPTO-DEV-TOKEN` with the contract address of the `Crypto Dev` token contract that you deployed in the `ICO` tutorial
 
@@ -530,7 +530,7 @@ const CRYPTO_DEV_TOKEN_CONTRACT_ADDRESS = "ADDRESS-OF-CRYPTO-DEV-TOKEN";
 module.exports = { CRYPTO_DEV_TOKEN_CONTRACT_ADDRESS };
 ```
 
-Lets deploy the contract to `goerli` network. Create a new file, or replace the existing default one, named `deploy.js` under the `scripts` folder
+Let's deploy the contract to `goerli` network. Create a new file, or replace the existing default one, named `deploy.js` under the `scripts` folder
 
 Now we would write some code to deploy the contract in `deploy.js` file.
 
@@ -629,7 +629,7 @@ npm run dev
 
 Now go to `http://localhost:3000`, your app should be running 🤘
 
-Now lets install [Web3Modal library](https://github.com/Web3Modal/web3modal). Web3Modal is an easy-to-use library to help developers add support for multiple providers in their apps with a simple customizable configuration. By default Web3Modal Library supports injected providers like (Metamask, Dapper, Gnosis Safe, Frame, Web3 Browsers, etc), You can also easily configure the library to support Portis, Fortmatic, Squarelink, Torus, Authereum, D'CENT Wallet and Arkane.
+Now let's install [Web3Modal library](https://github.com/Web3Modal/web3modal). Web3Modal is an easy-to-use library to help developers add support for multiple providers in their apps with a simple customizable configuration. By default Web3Modal Library supports injected providers like (Metamask, Dapper, Gnosis Safe, Frame, Web3 Browsers, etc), You can also easily configure the library to support Portis, Fortmatic, Squarelink, Torus, Authereum, D'CENT Wallet and Arkane.
 Open up a terminal pointing at`my-app` directory and execute this command
 
 ```bash
@@ -741,7 +741,7 @@ Now go to styles folder and replace all the contents of `Home.modules.css` file 
 }
 ```
 
-Now lets create a constants folder to keep track of any constants we might have. Create a `constants` folder under `my-app` folder and inside the `constants` folder create a file names index.js
+Now let's create a constants folder to keep track of any constants we might have. Create a `constants` folder under `my-app` folder and inside the `constants` folder create a file named index.js
 Paste the following code.
 
 - Replace `ABI-CRYPTO-DEV-TOKEN-CONTRACT` with the abi of the `Crypto Dev` token contract that you deployed in the ICO tutorial.
@@ -758,7 +758,7 @@ Paste the following code.
 
 Now we would create some utility files which would help us to better interact with the contract. Create a `utils` folder inside the `my-app` folder and inside the folder create 4 files: `addLiquidity.js`, `removeLiquidity.js`, `getAmounts.js`, and `swap.js`
 
-Lets start by writing some code in `getAmounts.js`. This file is used to retrieve balances and reserves for assets
+Let's start by writing some code in `getAmounts.js`. This file is used to retrieve balances and reserves for assets
 
 ```javascript
 import { Contract } from "ethers";
@@ -845,7 +845,7 @@ export const getReserveOfCDTokens = async (provider) => {
 };
 ```
 
-Lets now write some code for `addLiquidity.js`.
+Let's now write some code for `addLiquidity.js`.
 
 - `addLiquidity.js` has two functions `addLiquidity` and `calculateCD`
 
@@ -922,7 +922,7 @@ Lets now write some code for `addLiquidity.js`.
     // We do that using the `parseEther` function from `ethers.js`
     const _addEtherAmountWei = utils.parseEther(_addEther);
 
-    // Ratio needs to be maintained when we add liquidty.
+    // Ratio needs to be maintained when we add liquidity.
     // We need to let the user know for a specific amount of ether how many `CD` tokens
     // He can add so that the price impact is not large
     // The ratio we follow is (amount of Crypto Dev tokens to be added) / (Crypto Dev tokens balance) = (Eth that would be added) / (Eth reserve in the contract)
@@ -940,7 +940,7 @@ Now add some code to `removeLiquidity.js`
 - We have two functions here: One is `removeLiquidity` and the other is `getTokensAfterRemove`
 - `removeLiquidity` calls the `removeLiquidity` function from the contract,
   to remove the amount of `LP` tokens specified by the user
-- `getTokensAfterRemove` calulates the amount of `Ether` and `CD` tokens
+- `getTokensAfterRemove` calculates the amount of `Ether` and `CD` tokens
   that would be sent back to the user after he removes a certain amount of `LP`
   tokens from the pool
 - The amount of `Eth` that would be sent back to the user after he withdraws the `LP` token is calculated based on a ratio,
@@ -1126,7 +1126,7 @@ Now it's time to write code for `swap.js` our last `utils` file
   };
   ```
 
-Now its time for the final stages of our app, lets add some code to the `pages/index.js` file which next already gives you. Replace all the contents of the file with the following content
+Now it's time for the final stages of our app, let's add some code to the `pages/index.js` file which next already gives you. Replace all the contents of the file with the following content
 
 ```js
 import { BigNumber, providers, utils } from "ethers";
@@ -1442,7 +1442,7 @@ export default function Home() {
   useEffect(() => {
     // if wallet is not connected, create a new instance of Web3Modal and connect the MetaMask wallet
     if (!walletConnected) {
-      // Assign the Web3Modal class to the reference object by setting it's `current` value
+      // Assign the Web3Modal class to the reference object by setting its `current` value
       // The `current` value is persisted throughout as long as this page is open
       web3ModalRef.current = new Web3Modal({
         network: "goerli",

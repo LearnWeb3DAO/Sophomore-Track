@@ -516,7 +516,7 @@ export default function Home() {
       // Get the provider from web3Modal, which in our case is MetaMask
       // No need for the Signer here, as we are only reading state from the blockchain
       const provider = await getProviderOrSigner();
-      // Create an instace of token contract
+      // Create an instance of token contract
       const tokenContract = new Contract(
         TOKEN_CONTRACT_ADDRESS,
         TOKEN_CONTRACT_ABI,
@@ -561,7 +561,7 @@ export default function Home() {
       // wait for the transaction to get mined
       await tx.wait();
       setLoading(false);
-      window.alert("Sucessfully minted Crypto Dev Tokens");
+      window.alert("Successfully minted Crypto Dev Tokens");
       await getBalanceOfCryptoDevTokens();
       await getTotalTokensMinted();
       await getTokensToBeClaimed();
