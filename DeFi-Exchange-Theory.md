@@ -160,7 +160,7 @@ Assume we have `100 ETH` and `200 LW3 Token` in the contract.
 `inputReserve` = 200 LW3 Tokens
 `outputReserve` = 100 ETH
 
-=> `outputAmount` = `0.999` `ETH`
+=> `outputAmount` = `0.9901` `ETH`
 
 These amounts are very close to the `1:2` ratio of tokens present in the contract reserves, but slightly smaller. Why?
 
