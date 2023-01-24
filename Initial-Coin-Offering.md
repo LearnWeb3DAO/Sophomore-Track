@@ -51,6 +51,11 @@ cd hardhat-tutorial
 npm init --yes
 npm install --save-dev hardhat
 ```
+If you are a Windows user, you'll have to add one more dependency. so in the terminal, add the following command :
+
+```bash 
+npm install --save-dev @nomicfoundation/hardhat-toolbox
+```
 
 In the same directory where you installed Hardhat run:
 
@@ -153,7 +158,7 @@ Create another file inside the `contracts` directory and call it `CryptoDevToken
           // Get the number of CryptoDev NFT's held by a given sender address
           uint256 balance = CryptoDevsNFT.balanceOf(sender);
           // If the balance is zero, revert the transaction
-          require(balance > 0, "You dont own any Crypto Dev NFT's");
+          require(balance > 0, "You don't own any Crypto Dev NFT");
           // amount keeps track of number of unclaimed tokenIds
           uint256 amount = 0;
           // loop over the balance and get the token ID owned by `sender` at a given `index` of its token list.
@@ -173,13 +178,15 @@ Create another file inside the `contracts` directory and call it `CryptoDevToken
       }
 
       /**
-        * @dev withdraws all ETH and tokens sent to the contract
+        * @dev withdraws all ETH sent to this contract
         * Requirements:
         * wallet connected must be owner's address
         */
       function withdraw() public onlyOwner {
-        address _owner = owner();
         uint256 amount = address(this).balance;
+        require(amount > 0, "Nothing to withdraw, contract balance empty");
+        
+        address _owner = owner();
         (bool sent, ) = _owner.call{value: amount}("");
         require(sent, "Failed to send Ether");
       }
@@ -509,7 +516,7 @@ export default function Home() {
       // Get the provider from web3Modal, which in our case is MetaMask
       // No need for the Signer here, as we are only reading state from the blockchain
       const provider = await getProviderOrSigner();
-      // Create an instace of token contract
+      // Create an instance of token contract
       const tokenContract = new Contract(
         TOKEN_CONTRACT_ADDRESS,
         TOKEN_CONTRACT_ABI,
@@ -554,7 +561,7 @@ export default function Home() {
       // wait for the transaction to get mined
       await tx.wait();
       setLoading(false);
-      window.alert("Sucessfully minted Crypto Dev Tokens");
+      window.alert("Successfully minted Crypto Dev Tokens");
       await getBalanceOfCryptoDevTokens();
       await getTotalTokensMinted();
       await getTokensToBeClaimed();
@@ -640,7 +647,7 @@ export default function Home() {
   };
 
   /**
-   * withdrawCoins: withdraws ether and tokens by calling
+   * withdrawCoins: withdraws ether by calling
    * the withdraw function in the contract
    */
   const withdrawCoins = async () => {
@@ -659,6 +666,7 @@ export default function Home() {
       await getOwner();
     } catch (err) {
       console.error(err);
+      window.alert(err.reason);
     }
   };
 
@@ -725,7 +733,7 @@ export default function Home() {
       getTotalTokensMinted();
       getBalanceOfCryptoDevTokens();
       getTokensToBeClaimed();
-      withdrawCoins();
+      getOwner();
     }
   }, [walletConnected]);
 
@@ -738,16 +746,6 @@ export default function Home() {
       return (
         <div>
           <button className={styles.button}>Loading...</button>
-        </div>
-      );
-    }
-    // if owner is connected, withdrawCoins() is called
-    if (walletConnected && isOwner) {
-      return (
-        <div>
-          <button className={styles.button1} onClick={withdrawCoins}>
-            Withdraw Coins
-          </button>
         </div>
       );
     }
@@ -813,6 +811,17 @@ export default function Home() {
                 Overall {utils.formatEther(tokensMinted)}/10000 have been minted!!!
               </div>
               {renderButton()}
+              {/* Display additional withdraw button if connected wallet is owner */}
+                {isOwner ? (
+                  <div>
+                  {loading ? <button className={styles.button}>Loading...</button>
+                           : <button className={styles.button} onClick={withdrawCoins}>
+                               Withdraw Coins
+                             </button>
+                  }
+                  </div>
+                  ) : ("")
+                }
             </div>
           ) : (
             <button onClick={connectWallet} className={styles.button}>
