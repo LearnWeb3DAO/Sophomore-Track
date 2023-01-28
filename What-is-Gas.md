@@ -63,7 +63,7 @@ So, when Alice sends the money, 1.0042 ETH will be deducted from her account, an
 <Quiz questionId="ae1ac31d-8a45-436f-99f3-275fc17c0d45" />
 
 **You may be wondering how the gas price was set to 200 Gwei?**
-How much the gas price is set to is upto the user. Transactions with higher gas price have higher priority to be included in a block, as miners receive a higher tip for mining those first. Gas price, therefore, basically works like an open auction, or a bribe to miners. Whoever is willing to pay the highest price, or highest bribe, to the miners, gets their transaction included faster than the lower priced ones.
+How much the gas price is set to is up to the user. Transactions with higher gas price have higher priority to be included in a block, as miners receive a higher tip for mining those first. Gas price, therefore, basically works like an open auction, or a bribe to miners. Whoever is willing to pay the highest price, or highest bribe, to the miners, gets their transaction included faster than the lower priced ones.
 
 <Quiz questionId="684baf6d-328b-4ad3-b176-38b06d750d11" />
 
@@ -181,7 +181,7 @@ Gas fees help keep the Ethereum network secure. By requiring a fee for every com
 
 In order to avoid accidental or malicious infinite loops in smart contracts, which would cause all Ethereum nodes to forever be stuck, gas limits on transactions set a limit to how much computation a transaction can use.
 
-Code like this will use up all the gas provided, upto the limit, and then the transaction will fail:
+Code like this will use up all the gas provided, up to the limit, and then the transaction will fail:
 
 ```solidity
 // SPDX-License-Identifier: MIT
