@@ -53,6 +53,8 @@ npx @startertemp/nextjs-hardhat DAO-Tutorial
 
 *You can use [this guide](https://blog.asciix.com/getting-started-with-statertemp-nextjs-hardhat/) to understand this project more or checkout [this repository](https://github.com/startertemp/nextjs-hardhat) to understand how it works*
 
+> Note : If you get an error saying `npm ERR! syscall spawn git`, then make sure you have Git installed by going [here](https://git-scm.com/downloads).
+
 ![StaterTempExecutionSS](https://i.imgur.com/t1eQ2AS.png)
 
 This uses `npm` to install and setup all our necessary files to proceed with our work.
@@ -66,7 +68,7 @@ code .
 
 > If this does not pop-up your VSCode, make sure to follow these guides to setup on [Mac](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line), [Windows](https://code.visualstudio.com/docs/setup/mac#_launching-from-the-command-line) or [Linux](https://code.visualstudio.com/docs/setup/linux#_the-code-bin-command-does-not-bring-the-window-to-the-foreground-on-ubuntu)
 
-> Fun Fact : It's important to make sure your plugins are up-to-date by running `npm update`. Just make sure the updates you want won't break your code. For startertemp we have set the versions so it should be okay to update. You can read more about it [here](https://docs.npmjs.com/updating-packages-downloaded-from-the-registry#updating-local-packages).
+> Fun Fact : It's important to make sure your plugins are up-to-date by running `npm update`. Just make sure running the updates won't break your code. For startertemp we have already capped the versions so it should be okay to update. You can read more about it [here](https://docs.npmjs.com/updating-packages-downloaded-from-the-registry#updating-local-packages).
 
 ### 🧮 Smart Contract Development
 
@@ -80,19 +82,14 @@ Since we already have the Hardhat folder setup, we don't need to install anythin
 ```bash
 cd backend
 ```
-If you are a Windows user, you'll have to add one more dependency. so in the terminal, add the following command :
-
-```bash 
-npm install --save-dev @nomicfoundation/hardhat-toolbox
-```
 
 > Note : The `backend` folder here means the `hardhat` folder that you are used to.
 
-First, let's make a simple Fake NFT Marketplace. Create a file named `FakeNFTMarketplace.sol` under the `contracts` directory within `backend`, and add the following code.
+First, let's make a simple Fake NFT Marketplace. Create a file named `FakeNFTMarketplace.sol` under the `contracts` directory within the folder `backend`, and add the following code.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.9;
 
 contract FakeNFTMarketplace {
     /// @dev Maintain a mapping of Fake TokenID to Owner addresses
@@ -125,6 +122,8 @@ contract FakeNFTMarketplace {
 }
 ```
 
+> Fun Fact : You might have noticed the comments are weird with words like `@dev` and `@param`. These are called NatSpec Comments. You can read more about them on the [Solidity documentation](https://docs.soliditylang.org/en/v0.8.17/natspec-format.html).
+
 The `FakeNFTMarketplace` exposes some basic functions that we will be using from the DAO contract to purchase NFTs if a proposal is passed. A real NFT marketplace would be more complicated - as not all NFTs have the same price.
 
 Let's make sure everything compiles before we start writing the DAO Contract. Run the following command inside the `backend` folder from your Terminal.
@@ -135,15 +134,15 @@ npx hardhat compile
 
 and make sure there are no compilation errors.
 
-Now, we will start writing the `CryptoDevsDAO` contract. Since this is mostly a completely custom contract, and relatively more complicated than what we have done so far, we will explain this one bit-by-bit. First, let's write the boilerplate code for the contract. Create a new file named `CryptoDevsDAO.sol` under the `contracts` directory in `hardhat-tutorial` and add the following code to it.
+Now, we will start writing the `CryptoDevsDAO` contract. Since this is mostly a completely custom contract, and relatively more complicated than what we have done so far, we will explain this one bit-by-bit. First, let's write the boilerplate code for the contract. Create a new file named `CryptoDevsDAO.sol` under the `contracts` directory inside the `backend` folder and add the following code to it.
 
 ```solidity
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-// We will add the Interfaces here
+// Replace this line with the Interfaces
 
 contract CryptoDevsDAO is Ownable {
     // We will write contract code here
@@ -152,7 +151,7 @@ contract CryptoDevsDAO is Ownable {
 
 Now, we will need to call functions on the `FakeNFTMarketplace` contract, and your previously deployed `CryptoDevs NFT` contract. Recall from the `Advanced Solidity Topics` tutorial that we need to provide an interface for those contracts, so this contract knows which functions are available to call and what they take as parameters and what they return.
 
-Add the following two interfaces to your code by adding the following code
+Add the following two interfaces to your code replacing the comment on line 6
 
 ```solidity
 /**
@@ -200,7 +199,7 @@ Now, let's think about what functionality we need in the DAO contract.
 - Allow holders of the CryptoDevs NFT to vote on proposals, given they haven't already voted, and that the proposal hasn't passed it's deadline yet
 - Allow holders of the CryptoDevs NFT to execute a proposal after it's deadline has been exceeded, triggering an NFT purchase in case it passed
 
-Let's start off by creating a `struct` representing a `Proposal`. In your contract, add the following code:
+Let's start off by creating a `struct` representing a `Proposal`. In your CryptoDevsDAO contract, add the following code:
 
 ```solidity
 // Create a struct named Proposal containing all relevant information
@@ -229,7 +228,7 @@ mapping(uint256 => Proposal) public proposals;
 uint256 public numProposals;
 ```
 
-Now, since we will be calling functions on the `FakeNFTMarketplace` and `CryptoDevsNFT` contract, let's initialize variables for those contracts.
+Now, since we will be calling functions on the `FakeNFTMarketplace` and `CryptoDevsNFT` contract, let's create variables to store those contracts.
 
 ```solidity
 IFakeNFTMarketplace nftMarketplace;
@@ -296,7 +295,7 @@ modifier activeProposalOnly(uint256 proposalIndex) {
 }
 ```
 
-Note how this modifier takes a parameter!
+> Note how this modifier takes a parameter!
 
 Additionally, since a vote can only be one of two values (YAY or NAY) - we can create an `enum` representing possible options.
 
@@ -362,7 +361,7 @@ modifier inactiveProposalOnly(uint256 proposalIndex) {
 }
 ```
 
-Note this modifier also takes a parameter!
+> Note this modifier also takes a parameter!
 
 Let's write the code for `executeProposal`
 
@@ -392,7 +391,11 @@ We have at this point implemented all the core functionality. However, there are
 - Allow the contract owner to withdraw the ETH from the DAO if needed
 - Allow the contract to accept further ETH deposits
 
-The `Ownable` contract we inherit from contains a modifier `onlyOwner` which restricts a function to only be able to be called by the contract owner. Let's implement `withdrawEther` using that modifier.
+The `Ownable` contract we inherit from, contains a modifier `onlyOwner` which restricts a function to only be able to be called by the contract owner.
+
+> You can view the Implementation of the `Ownable.sol` [here](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/master/contracts/access/Ownable.sol#L35). 
+
+Let's implement `withdrawEther` using that modifier.
 
 ```solidity
 /// @dev withdrawEther allows the contract owner (deployer) to withdraw the ETH from the contract
@@ -415,11 +418,15 @@ receive() external payable {}
 fallback() external payable {}
 ```
 
+> You can find more about the Receive and Fallback functions from the [documentation](https://docs.soliditylang.org/en/v0.8.17/contracts.html?highlight=receive#receive-ether-function).
+
 ### 🔮 Deploying our Contract
 
-Now that we have written both our contracts, let's deploy them to the [Goerli Testnet](https://goerli.etherscan.com). Ensure you have some ETH on the Goerli Testnet.
+Now that we have written both our contracts, let's deploy them to the [Goerli Testnet](https://goerli.etherscan.io). Ensure you have some ETH on the Goerli Testnet.
 
-Now create a `.env` file in the `backend` folder and add the following lines. Follow the instructions below.
+Let's create the configuration to deploy our contract on the Goerli Network.
+
+Create an `.env` file in the `backend` folder and follow the instructions below.
 
 > Note : Usually you would need to install `dotenv`, but it comes installed with the startertemp so you don't have to worry about installing it now.
 
@@ -427,7 +434,9 @@ Go to [Quicknode](https://www.quicknode.com/?utm_source=learnweb3&utm_campaign=g
 
 > NOTE: If you previously set up a Goerli Endpoint on Quicknode during the Freshman Track, you can use the same URL as before. No need to delete it and set up a new one.
 
-To get your private key, you need to export it from Metamask. Open Metamask, click on the three dots, click on `Account Details` and then `Export Private Key`. MAKE SURE YOU ARE USING A TEST ACCOUNT THAT DOES NOT HAVE MAINNET FUNDS FOR THIS. Add this Private Key below in your `.env` file for `PRIVATE_KEY` variable.
+To get your private key, you need to export it from Metamask. Open Metamask, click on the three dots, click on `Account Details` and then `Export Private Key`. **MAKE SURE YOU ARE USING A TEST ACCOUNT THAT DOES NOT HAVE MAINNET FUNDS FOR THIS.** 
+
+Add this Private Key below in your `.env` file for `PRIVATE_KEY` variable.
 
 ```
 QUICKNODE_HTTP_URL="add-quicknode-http-provider-url-here"
@@ -435,13 +444,19 @@ QUICKNODE_HTTP_URL="add-quicknode-http-provider-url-here"
 PRIVATE_KEY="add-the-private-key-here"
 ```
 
-Now, let's write a deployment script to automatically deploy both our contracts for us. Create a new file, or replace the existing default one, named `deploy.js` under `backend/scripts`, and add the following code:
+Now, let's write a deployment script to automatically deploy both our contracts for us. 
 
-```javascript
-const { ethers } = require("hardhat");
+You might have noticed there is already a file named `deploy.js` under `backend/scripts`. 
+
+Let write our imports at the top of the document : 
+
+```js
 const { CRYPTODEVS_NFT_CONTRACT_ADDRESS } = require("../constants");
+```
 
-async function main() {
+Then let's write the following below line 31 inside the `main()` function :
+
+```js
   // Deploy the FakeNFTMarketplace contract first
   const FakeNFTMarketplace = await ethers.getContractFactory(
     "FakeNFTMarketplace"
@@ -457,25 +472,19 @@ async function main() {
     fakeNftMarketplace.address,
     CRYPTODEVS_NFT_CONTRACT_ADDRESS,
     {
-      // This assumes your account has at least 1 ETH in it's account
+      // This assumes your metamask account has at least 1 ETH in its account
       // Change this value as you want
       value: ethers.utils.parseEther("1"),
     }
   );
   await cryptoDevsDAO.deployed();
 
-  console.log("CryptoDevsDAO deployed to: ", cryptoDevsDAO.address);
-}
-
-main()
-  .then(() => process.exit(0))
-  .catch((error) => {
-    console.error(error);
-    process.exit(1);
-  });
+  console.log("CryptoDevsDAO deployed to: ", cryptoDevsDAO.address); 
 ```
 
-As you may have noticed, `deploy.js` imports a variable called `CRYPTODEVS_NFT_CONTRACT_ADDRESS` from a file named `constants`. Let's make that. Create a new file named `constants.js` in the `backend` directory.
+As you may have noticed, `deploy.js` imports a variable called `CRYPTODEVS_NFT_CONTRACT_ADDRESS` from a file named `constants`. Let's make that. 
+
+Create a new file named `constants.js` in the `backend` directory.
 
 ```javascript
 // Replace the value with your NFT contract address
@@ -485,25 +494,24 @@ const CRYPTODEVS_NFT_CONTRACT_ADDRESS =
 module.exports = { CRYPTODEVS_NFT_CONTRACT_ADDRESS };
 ```
 
-Now, let's add the Goerli Network to your Hardhat Config so we can deploy to Goerli. Open your `hardhat.config.js` file and replace it with the following:
+Now, let's add the Goerli Network to your Hardhat Config so we can deploy to Goerli. 
+
+Open your `hardhat.config.js` file and replace the `module.exports` segment on line 31 and below with :
 
 ```js
-require("@nomicfoundation/hardhat-toolbox");
-require("dotenv").config({ path: ".env" });
-
-const QUICKNODE_HTTP_URL = process.env.QUICKNODE_HTTP_URL;
-const PRIVATE_KEY = process.env.PRIVATE_KEY;
-
 module.exports = {
-  solidity: "0.8.4",
+  solidity: "0.8.9",
+  defaultNetwork: "mumbai",
   networks: {
     goerli: {
-      url: QUICKNODE_HTTP_URL,
-      accounts: [PRIVATE_KEY],
+      url: process.env.QUICKNODE_HTTP_URL,
+      accounts: [process.env.PRIVATE_KEY],
     },
   },
 };
 ```
+
+> Note : We added a new field called `defaultNetwork`. This will make it so that we don't need to specify which network we want to deploy to when we run the command as you will see later on.
 
 Let's make sure everything compiles before proceeding. Execute the following command from your Terminal within the `backend` folder.
 
@@ -512,13 +520,16 @@ npx hardhat compile
 ```
 
 and make sure there are no compilation errors.
-If you do face compilation errors, try comparing your code against the [final version present here](https://github.com/LearnWeb3DAO/Building-a-DAO/blob/main/hardhat-tutorial/contracts/CryptoDevsDAO.sol)
+
+If you do face compilation errors, try comparing your code against the [final version present here](https://github.com/LearnWeb3DAO/Building-a-DAO/blob/main/hardhat-tutorial/contracts/CryptoDevsDAO.sol). 
 
 Let's deploy! Execute the following command in your Terminal from the `backend` directory
 
 ```bash
-npx hardhat run scripts/deploy.js --network goerli
+npx hardhat run scripts/deploy.js
 ```
+
+> Notice we didn't run the flag `--network goerli`
 
 - Save the `FakeNFTMarketplace` and `CryptoDevsDAO` contract addresses that get printed in your Terminal. You will need those later.
 
