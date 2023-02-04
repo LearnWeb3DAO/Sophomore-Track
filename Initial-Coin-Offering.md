@@ -347,7 +347,7 @@ Open up a terminal pointing to `my-app` directory and execute this command:
 In the same terminal also install `ethers.js`:
 
 ```bash
-npm install ethers
+npm i ethers@5
 ```
 
 In the `public` folder, download the following [image](https://github.com/LearnWeb3DAO/NFT-Collection/tree/main/my-app/public/cryptodevs/0.svg). Make sure that the name of the downloaded image is `0.svg`.
