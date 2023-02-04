@@ -501,7 +501,7 @@ Open your `hardhat.config.js` file and replace the `module.exports` segment on l
 ```js
 module.exports = {
   solidity: "0.8.9",
-  defaultNetwork: "mumbai",
+  defaultNetwork: "goerli",
   networks: {
     goerli: {
       url: process.env.QUICKNODE_HTTP_URL,
