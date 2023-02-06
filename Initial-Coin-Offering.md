@@ -344,10 +344,12 @@ Open up a terminal pointing to `my-app` directory and execute this command:
   npm install web3modal
 ```
 
-In the same terminal also install `ethers.js`:
+In the same terminal also install `ethers.js`
+
+> Note : We install v5 specifically since the new v6 has breaking changes to the code.
 
 ```bash
-npm install ethers
+npm i ethers@5
 ```
 
 In the `public` folder, download the following [image](https://github.com/LearnWeb3DAO/NFT-Collection/tree/main/my-app/public/cryptodevs/0.svg). Make sure that the name of the downloaded image is `0.svg`.
