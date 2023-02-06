@@ -344,7 +344,9 @@ Open up a terminal pointing to `my-app` directory and execute this command:
   npm install web3modal
 ```
 
-In the same terminal also install `ethers.js`:
+In the same terminal also install `ethers.js`
+
+> Note : We install v5 specifically since the new v6 has breaking changes to the code.
 
 ```bash
 npm i ethers@5
