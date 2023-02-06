@@ -233,8 +233,10 @@ npm install web3modal
 
 In the same terminal also install `ethers.js`
 
+> Note : We install v5 specifically since the new v6 has breaking changes to the code.
+
 ```bash
-npm install ethers
+npm install ethers@5
 ```
 
 In your my-app/public folder, download [this image](https://github.com/LearnWeb3DAO/Whitelist-Dapp/blob/main/my-app/public/crypto-devs.svg) and rename it to `crypto-devs.svg`

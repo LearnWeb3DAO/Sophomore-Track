@@ -365,8 +365,10 @@ Open up a terminal pointing at`my-app` directory and execute this command
 
 In the same terminal also install `ethers.js`
 
+> Note : We install v5 specifically since the new v6 has breaking changes to the code.
+
 ```bash
-npm install ethers
+npm install ethers@5
 ```
 
 In your public folder, download this folder and all the images in it ([Download Link](https://download-directory.github.io/?url=https%3A%2F%2Fgithub.com%2FLearnWeb3DAO%2FNFT-Collection%2Ftree%2Fmain%2Fmy-app%2Fpublic%2Fcryptodevs)). Make sure that the name of the downloaded folder is `cryptodevs`
