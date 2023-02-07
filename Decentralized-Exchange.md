@@ -638,6 +638,8 @@ Open up a terminal pointing at`my-app` directory and execute this command
 
 In the same terminal also install `ethers.js`
 
+> Note : We install v5 specifically since the new v6 has breaking changes to the code.
+
 ```bash
 npm i ethers@5
 ```
