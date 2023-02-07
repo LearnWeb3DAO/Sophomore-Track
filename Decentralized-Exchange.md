@@ -639,7 +639,7 @@ Open up a terminal pointing at`my-app` directory and execute this command
 In the same terminal also install `ethers.js`
 
 ```bash
-npm i ethers
+npm i ethers@5
 ```
 
 In your public folder, download this [image](https://github.com/LearnWeb3DAO/Defi-Exchange/blob/main/my-app/public/cryptodev.svg) and rename it to `cryptodev.svg`.
