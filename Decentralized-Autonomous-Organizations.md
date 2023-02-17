@@ -43,6 +43,8 @@ In the previous tutorials we have setup Hardhat and Next JS seperately. Now we'r
 
 For this project we need to install Next JS with Web3Modal, so let's open a terminal in the place we would want to create this project. Ex: If you do all projects in a folder called `My-Projects` then open the terminal inside of that folder.
 
+*Make sure you are using a version that is greater than v14 in node. To check your version, type `node -v` in your terminal. If your version is 14 or lower, make sure to install a higher version [here](https://nodejs.org/en/download/).*
+
 Type the following commands to setup your Next JS - Hardhat project : 
 
 ```bash
