@@ -119,7 +119,7 @@ Prior to the London Upgrade, wallets like Metamask would provide estimates for g
 
 Starting with the London Upgrade however, every block was set to have a **base gas price fees**. This was the **minimum** price per unit of gas for getting your transaction included within this block. This was calculated natively by the network based on the demand for block space. These base fees would go on to be burnt by the Ethereum network, therefore forever getting rid of that ETH to offset issuance. Since Ethereum does not have an overall maximum supply (unlike Bitcoin, which has a maximum supply of 21M Bitcoins), the burn helps the ETH supply reach an equilibrium by not inflating it infinitely.
 
-In addition to the base fees, the concept of **tipping (priority fees)** was introduced. As the base fees got burnt, the tip was there to compensate miners for executing and propogating user transactions. This is again set by most wallets automatically, though you can choose to set this manually. Higher tip transactions tend to get higher priority.
+In addition to the base fees, the concept of **tipping (priority fees)** was introduced. As the base fees got burnt, the tip was there to compensate miners for executing and propagating user transactions. This is again set by most wallets automatically, though you can choose to set this manually. Higher tip transactions tend to get higher priority.
 
 With this upgrade, the formula to calculate gas fees changed to the following:
 
@@ -209,7 +209,7 @@ The fundamental unit to make all of this possible is Gas.
 
 ## Reducing Gas Fees
 
-High fees on Ethereum is a hot topic these days. The Ethereum community has solemlny swore to not hurt the decentralization or security of the network. As such, tradeoffs were made in favour of security which leads to the Ethereum network currently having higher transaction fees than other blockchains such as Solana, which made the tradeoff in favour of lower fees at the expense of security and decentralization.
+High fees on Ethereum is a hot topic these days. The Ethereum community has solemnly swore to not hurt the decentralization or security of the network. As such, tradeoffs were made in favour of security which leads to the Ethereum network currently having higher transaction fees than other blockchains such as Solana, which made the tradeoff in favour of lower fees at the expense of security and decentralization.
 
 Ethereum's fundamental goal is to be a **highly secure** and **highly decentralized** blockchain network capable of executing smart contracts.
 
