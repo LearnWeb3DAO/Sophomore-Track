@@ -59,7 +59,7 @@ Ethereum nodes contain implementations of the EVM, and the EVM can then execute 
 
 ## EVM Code Generation
 
-![](https://i.imgur.com/IH8Zh73.png)
+![](https://i.imgur.com/UfnzX63.png)
 
 ![](https://i.imgur.com/k2T5iVf.png)
 
