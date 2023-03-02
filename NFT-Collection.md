@@ -751,7 +751,7 @@ export default function Home() {
     if (!presaleStarted) {
       return (
         <div>
-          <div className={styles.description}>Presale hasn't started!</div>
+          <div className={styles.description}>Presale hasn&#39;t started!</div>
         </div>
       );
     }
@@ -792,7 +792,7 @@ export default function Home() {
         <div>
           <h1 className={styles.title}>Welcome to Crypto Devs!</h1>
           <div className={styles.description}>
-            It's an NFT collection for developers in Crypto.
+            It&#39;s an NFT collection for developers in Crypto.
           </div>
           <div className={styles.description}>
             {tokenIdsMinted}/20 have been minted
@@ -855,7 +855,7 @@ Now you can see your deployed website by going to your dashboard, selecting your
 
 Now let's make sure your collection is available on Opensea
 
-To make the collection available on Opensea, we would need to create a metadata endpoint. This endpoint would return the metadata for an NFT given it's `tokenId`.
+To make the collection available on Opensea, we would need to create a metadata endpoint. This endpoint would return the metadata for an NFT given its `tokenId`.
 
 Open your `my-app` folder and under`pages/api` folder, create a new file named `[tokenId].js`(Make sure the name has the brackets as well). Adding the brackets helps create dynamic routes in [next js](https://nextjs.org/docs/routing/dynamic-routes)
 
@@ -884,7 +884,7 @@ Now you have an API route that OpenSea, and other websites, can call to retrieve
 
 Let's deploy a new version of the `Crypto Devs` contract with this new API route as your `METADATA_URL`
 
-Open your `hardhat-tutorial/constants` folder and inside your `index.js` file, replace "https://nft-collection-sneh1999.vercel.app/api/" with the domain which you saved to notepad and add "/api/" to it's end.
+Open your `hardhat-tutorial/constants` folder and inside your `index.js` file, replace "https://nft-collection-sneh1999.vercel.app/api/" with the domain which you saved to notepad and add "/api/" to its end.
 
 Save the file and open up a new terminal pointing to `hardhat-tutorial` folder and deploy a new contract
 
