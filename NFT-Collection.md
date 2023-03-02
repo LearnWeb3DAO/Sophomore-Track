@@ -1,6 +1,6 @@
 # Build an NFT Collection
 
-Now its time for you to launch your own NFT collection - `Crypto Devs`.
+Now it's time for you to launch your own NFT collection - `Crypto Devs`.
 
 ![](https://i.imgur.com/fVxV66f.png)
 
@@ -185,7 +185,7 @@ contract CryptoDevs is ERC721Enumerable, Ownable {
     }
 
     /**
-    * @dev _baseURI overides the Openzeppelin's ERC721 implementation which by default
+    * @dev _baseURI overrides the Openzeppelin's ERC721 implementation which by default
     * returned an empty string for the baseURI
     */
     function _baseURI() internal view virtual override returns (string memory) {
@@ -326,7 +326,7 @@ To deploy, open up a terminal pointing at `hardhat-tutorial` directory and execu
 npx hardhat run scripts/deploy.js --network goerli
 ```
 
-Save the Crypto Devs Contract Address that was printed on your terminal in your notepad, you would need it futher down in the tutorial.
+Save the Crypto Devs Contract Address that was printed on your terminal in your notepad, you would need it further down in the tutorial.
 
 ### Website
 
@@ -357,7 +357,7 @@ npm run dev
 Now go to `http://localhost:3000`, your app should be running 🤘
 
 Now let's install Web3Modal library(https://github.com/Web3Modal/web3modal). Web3Modal is an easy-to-use library to help developers add support for multiple providers in their apps with a simple customizable configuration. By default Web3Modal Library supports injected providers like (Metamask, Dapper, Gnosis Safe, Frame, Web3 Browsers, etc), You can also easily configure the library to support Portis, Fortmatic, Squarelink, Torus, Authereum, D'CENT Wallet and Arkane.
-Open up a terminal pointing at`my-app` directory and execute this command
+Open up a terminal pointing at `my-app` directory and execute this command
 
 ```bash
   npm install web3modal
@@ -431,7 +431,7 @@ Now go to styles folder and replace all the contents of `Home.modules.css` file 
 }
 ```
 
-Open you index.js file under the pages folder and paste the following code, explanation of the code can be found in the comments.
+Open your index.js file under the pages folder and paste the following code, explanation of the code can be found in the comments.
 
 ```js
 import { Contract, providers, utils } from "ethers";
@@ -547,7 +547,7 @@ export default function Home() {
   };
 
   /**
-   * checkIfPresaleStarted: checks if the presale has started by quering the `presaleStarted`
+   * checkIfPresaleStarted: checks if the presale has started by querying the `presaleStarted`
    * variable in the contract
    */
   const checkIfPresaleStarted = async () => {
@@ -572,7 +572,7 @@ export default function Home() {
   };
 
   /**
-   * checkIfPresaleEnded: checks if the presale has ended by quering the `presaleEnded`
+   * checkIfPresaleEnded: checks if the presale has ended by querying the `presaleEnded`
    * variable in the contract
    */
   const checkIfPresaleEnded = async () => {
@@ -724,7 +724,7 @@ export default function Home() {
       renderButton: Returns a button based on the state of the dapp
     */
   const renderButton = () => {
-    // If wallet is not connected, return a button which allows them to connect their wllet
+    // If wallet is not connected, return a button which allows them to connect their wallet
     if (!walletConnected) {
       return (
         <button onClick={connectWallet} className={styles.button}>
@@ -738,7 +738,7 @@ export default function Home() {
       return <button className={styles.button}>Loading...</button>;
     }
 
-    // If connected user is the owner, and presale hasnt started yet, allow them to start the presale
+    // If connected user is the owner, and presale hasn't started yet, allow them to start the presale
     if (isOwner && !presaleStarted) {
       return (
         <button className={styles.button} onClick={startPresale}>
@@ -751,7 +751,7 @@ export default function Home() {
     if (!presaleStarted) {
       return (
         <div>
-          <div className={styles.description}>Presale hasnt started!</div>
+          <div className={styles.description}>Presale hasn't started!</div>
         </div>
       );
     }
@@ -771,7 +771,7 @@ export default function Home() {
       );
     }
 
-    // If presale started and has ended, its time for public minting
+    // If presale started and has ended, it's time for public minting
     if (presaleStarted && presaleEnded) {
       return (
         <button className={styles.button} onClick={publicMint}>
@@ -792,7 +792,7 @@ export default function Home() {
         <div>
           <h1 className={styles.title}>Welcome to Crypto Devs!</h1>
           <div className={styles.description}>
-            Its an NFT collection for developers in Crypto.
+            It's an NFT collection for developers in Crypto.
           </div>
           <div className={styles.description}>
             {tokenIdsMinted}/20 have been minted
@@ -855,7 +855,7 @@ Now you can see your deployed website by going to your dashboard, selecting your
 
 Now let's make sure your collection is available on Opensea
 
-To make the collection available on Opensea, we would need to create a metadata endpoint. This endpoint would return the metadata for an NFT given its `tokenId`.
+To make the collection available on Opensea, we would need to create a metadata endpoint. This endpoint would return the metadata for an NFT given it's `tokenId`.
 
 Open your `my-app` folder and under`pages/api` folder, create a new file named `[tokenId].js`(Make sure the name has the brackets as well). Adding the brackets helps create dynamic routes in [next js](https://nextjs.org/docs/routing/dynamic-routes)
 
@@ -884,7 +884,7 @@ Now you have an API route that OpenSea, and other websites, can call to retrieve
 
 Let's deploy a new version of the `Crypto Devs` contract with this new API route as your `METADATA_URL`
 
-Open your `hardhat-tutorial/constants` folder and inside your `index.js` file, replace "https://nft-collection-sneh1999.vercel.app/api/" with the domain which you saved to notepad and add "/api/" to its end.
+Open your `hardhat-tutorial/constants` folder and inside your `index.js` file, replace "https://nft-collection-sneh1999.vercel.app/api/" with the domain which you saved to notepad and add "/api/" to it's end.
 
 Save the file and open up a new terminal pointing to `hardhat-tutorial` folder and deploy a new contract
 
