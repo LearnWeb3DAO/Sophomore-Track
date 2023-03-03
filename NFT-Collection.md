@@ -812,6 +812,8 @@ export default function Home() {
 }
 ```
 
+You might have noticed the `&#39;` in the code. These are called [HTML Entities](https://www.w3schools.com/html/html_entities.asp). As an experiment, try what would happen if you wrote `hasn't` instead of `hasn&#39;t` when building or deploying to vercel.
+
 Now create a new folder under the `my-app` folder and name it `constants`. In the `constants` folder create a file, `index.js` and paste the following code.
 
 Replace `"address of your NFT contract"` with the address of the CryptoDevs contract that you deployed and saved to your notepad. Replace `---your abi---` with the abi of your CryptoDevs Contract. To get the abi for your contract, go to your `hardhat-tutorial/artifacts/contracts/CryptoDevs.sol` folder and from your `CryptoDevs.json` file get the array marked under the `"abi"` key.
