@@ -16,7 +16,7 @@ In the following years, Mt.Gox faced several lawsuits, some of which are still g
 
 QuadrigaCX, a centralized exchange based in Canada, went under in 2018. The founder of Quadriga mysteriously 'died' and all the crypto on the platform disappeared with him. Users reported almost $200 million in lost funds.
 
-The Ontario Securities Commision conducted thorough research into the activities of the company, and declared that the founder of Quadriga was, simply, a fraud.
+The Ontario Securities Commission conducted thorough research into the activities of the company, and declared that the founder of Quadriga was, simply, a fraud.
 
 [You can read more about what happened with Quadriga here](https://www.cbc.ca/news/business/osc-quadriga-gerald-cotten-1.5607990)
 
@@ -264,7 +264,7 @@ LP Tokens work as shares.
 But, there are additional requirements:
 
 1. Issued shares must always be correct. When someone else deposits or removes liquidity after you, your shares should remain and maintain correct values.
-2. Writing data to the chain can be expensive (gas fees) - we want to reduce the maintainence costs of LP-tokens as much as possible.
+2. Writing data to the chain can be expensive (gas fees) - we want to reduce the maintenance costs of LP-tokens as much as possible.
 
 Imagine we issue a lot of tokens - say a few billion. The first time someone adds liquidity, they own 100% of the liquidity in the pool. So do we give them all few billion tokens?
 
