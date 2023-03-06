@@ -130,12 +130,12 @@ contract Enum {
         return status;
     }
 
-    // Pass a uint for input to update the value
+    // Pass a Status enum value to update the status
     function set(Status _status) public {
         status = _status;
     }
 
-    // Update value to a specific enum members
+    // Set status to the Canceled enum value
     function cancel() public {
         status = Status.Canceled; // Will set status = 4
     }
