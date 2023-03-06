@@ -9,7 +9,7 @@ You are launching your NFT collection named `Crypto Devs`. You want to give your
 - Whitelist access should be given to the first `10` users for free who want to get in.
 - There should be a website where people can go and enter into the whitelist.
 
-Lets start building 🚀
+Let's start building 🚀
 
 ---
 
@@ -191,7 +191,7 @@ To deploy, open up a terminal pointing at `hardhat-tutorial` directory and execu
 npx hardhat run scripts/deploy.js --network goerli
 ```
 
-Save the Whitelist Contract Address that was printed on your terminal in your notepad, you would need it futher down in the tutorial.
+Save the Whitelist Contract Address that was printed on your terminal in your notepad, you would need it further down in the tutorial.
 
 ### Website
 
@@ -225,7 +225,7 @@ Now go to `http://localhost:3000`, your app should be running 🤘
 Now lets install [Web3Modal library](https://github.com/Web3Modal/web3modal). Web3Modal is an easy to use library to help developers easily allow their users to connect to your dApps with all sorts of different wallets. By default Web3Modal Library supports injected providers like (Metamask, Dapper, Gnosis Safe, Frame, Web3 Browsers, etc) and WalletConnect, You can also easily configure the library to support Portis, Fortmatic, Squarelink, Torus, Authereum, D'CENT Wallet and Arkane.
 (Here's a live example on [Codesandbox.io](https://codesandbox.io/s/j43b10))
 
-Open up a terminal pointing at`my-app` directory and execute this command
+Open up a terminal pointing at `my-app` directory and execute this command
 
 ```bash
 npm install web3modal
@@ -504,7 +504,8 @@ export default function Home() {
         <div>
           <h1 className={styles.title}>Welcome to Crypto Devs!</h1>
           <div className={styles.description}>
-            Its an NFT collection for developers in Crypto.
+            {/* Using HTML Entities for the apostrophe */}
+            It&#39;s an NFT collection for developers in Crypto.
           </div>
           <div className={styles.description}>
             {numberOfWhitelisted} have already joined the Whitelist
