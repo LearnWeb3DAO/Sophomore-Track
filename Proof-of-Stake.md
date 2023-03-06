@@ -132,3 +132,4 @@ The following are recommended, but optional, readings/viewings to understand mor
 - [Proof of Stake FAQ by Vitalik Buterin](https://vitalik.ca/general/2017/12/31/pos_faq.html)
 - [Why PoS Matters](https://bitcoinmagazine.com/culture/what-proof-of-stake-is-and-why-it-matters-1377531463)
 - [LearnWeb3's older lesson on Proof of Work](https://github.com/LearnWeb3DAO/Sophomore-Track/blob/main/Proof-of-Work.md)
+- [Why Proof of Stake by Vitalik Buterin](https://vitalik.ca/general/2020/11/06/pos2020.html)
