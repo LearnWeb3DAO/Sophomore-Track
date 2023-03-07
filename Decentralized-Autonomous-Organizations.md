@@ -39,7 +39,7 @@ You want to allow your NFT holders to create and vote on proposals to use that E
 
 ### 📌 Setup our Project
 
-In the previous tutorials we have setup Hardhat and Next JS seperately. Now we're gonna use a nifty trick to install them together so that we don't have to worry about installing and configuring them ourselves. 
+In the previous tutorials we have setup Hardhat and Next JS separately. Now we're gonna use a nifty trick to install them together so that we don't have to worry about installing and configuring them ourselves. 
 
 For this project we need to install Next JS with Web3Modal, so let's open a terminal in the place we would want to create this project. Ex: If you do all projects in a folder called `My-Projects` then open the terminal inside of that folder.
 
@@ -410,7 +410,7 @@ function withdrawEther() external onlyOwner {
 
 This will transfer the entire ETH balance of the contract to the owner address
 
-Finally, to allow for adding more ETH deposits to the DAO treasury, we need to add some special functions. Normally, contract addresses cannot accept ETH sent to them, unless it was through a `payable` function. But we don't want users to call functions just to deposit money, they should be able to tranfer ETH directly from their wallet. For that, let's add these two functions:
+Finally, to allow for adding more ETH deposits to the DAO treasury, we need to add some special functions. Normally, contract addresses cannot accept ETH sent to them, unless it was through a `payable` function. But we don't want users to call functions just to deposit money, they should be able to transfer ETH directly from their wallet. For that, let's add these two functions:
 
 ```solidity
 // The following two functions allow the contract to accept ETH deposits
