@@ -278,7 +278,7 @@ The only good solution seems to have no supply limit at all, and mint new tokens
 
 Uniswap V1 calculates the amount proportionate to the ETH reserve. The following equation shows how the amount of new LP-tokens is calculated depending on how much ETH is deposited:
 
-`amountMinted = totalAmount * (ethDeposited / ethReserve)`
+`amountMinted = (totalAmount * ethDeposited) / ethReserve`
 
 We can update `addLiquidity` function to mint LP-tokens when liquidity is added:
 
