@@ -403,8 +403,9 @@ Let's implement `withdrawEther` using that modifier.
 /// @dev withdrawEther allows the contract owner (deployer) to withdraw the ETH from the contract
 function withdrawEther() external onlyOwner {
     uint256 amount = address(this).balance;
-    require(amount > 0, "Nothing to withdraw; contract balance empty");
-    payable(owner()).transfer(amount);
+    require(amount > 0, "Nothing to withdraw, contract balance empty");
+    (bool sent, ) = payable(owner()).call{value: amount}("");
+    require(sent, "FAILED_TO_WITHDRAW_ETHER");
 }
 ```
 
