@@ -339,7 +339,7 @@ But, Solidity does not support floating point operations. So for Solidity we rew
 
 This was a big tutorial with a lot of condensed information. Congratulations on making it this far!
 
-While the math and the ideas can be a little tricky to initially understand, we hope that going by going through the material and asking questions on Discord you can develop an appreciation for how beautifully architected all of this is.
+While the math and the ideas can be a little tricky to initially understand, we hope that by going through the material and asking questions on Discord you can develop an appreciation for how beautifully architected all of this is.
 
 See you in the next level where we will actually implement the full contract, along with a website, for the DEX.
 
