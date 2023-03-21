@@ -48,10 +48,12 @@ For this project we need to install Next JS with Web3Modal, so let's open a term
 Type the following commands to setup your Next JS - Hardhat project : 
 
 ```bash
-npx @startertemp/nextjs-hardhat DAO-Tutorial
+npx @startertemp/nextjs-hardhat@latest DAO-Tutorial
 ```
 
 > If this is your first time using this, you will be prompted whether you want to install `@startertemp/nextjs-hardhat`. Make sure you confirm yes to that by typing out `y`.
+
+> Fun fact : We are telling npm to install the latest version by adding in the `@latest`. We can tell npm to install a specific version as well, for example, by changing `@latest` into `@1.1.5`.
 
 *You can use [this guide](https://blog.asciix.com/getting-started-with-statertemp-nextjs-hardhat/) to understand this project more or checkout [this repository](https://github.com/startertemp/nextjs-hardhat) to understand how it works*
 
