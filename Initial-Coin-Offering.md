@@ -12,7 +12,7 @@ If you would rather learn from a video, we have a recording available of this tu
 [![ICO dApp Part-1](https://i.imgur.com/RbQWNQ1.png)](https://www.youtube.com/watch?v=qywahxzavkw "ICO dApp Tutorial")
 [![ICO dApp Part-2](https://i.imgur.com/frmWOa2.png)](https://www.youtube.com/watch?v=faIuZW5zCi8 "ICO dApp Tutorial")
 
-Note: The video tutorial is based on Rinkeby testnet, but the text tutorial is based on Goerli for future support. Please use the Goerli network.
+Note: The video tutorial is based on Rinkeby testnet, but the text tutorial is based on Sepolia for future support. Please use the Sepolia network.
 
 ## Build
 
@@ -208,9 +208,9 @@ npm install dotenv
 
 Now create a `.env` file in the `hardhat-tutorial` folder and add the following lines. Follow the instructions below.
 
-Go to [Quicknode](https://www.quicknode.com/?utm_source=learnweb3&utm_campaign=generic&utm_content=sign-up&utm_medium=learnweb3) and sign up for an account. If you already have an account, log in. Quicknode is a node provider that lets you connect to various different blockchains. We will be using it to deploy our contract through Hardhat. After creating an account, `Create an endpoint` on Quicknode, select `Ethereum`, and then select the `Goerli` network. Click `Continue` in the bottom right and then click on `Create Endpoint`. Copy the link given to you in `HTTP Provider` and add it to the `.env` file below for `QUICKNODE_HTTP_URL`.
+Go to [Quicknode](https://www.quicknode.com/?utm_source=learnweb3&utm_campaign=generic&utm_content=sign-up&utm_medium=learnweb3) and sign up for an account. If you already have an account, log in. Quicknode is a node provider that lets you connect to various different blockchains. We will be using it to deploy our contract through Hardhat. After creating an account, `Create an endpoint` on Quicknode, select `Ethereum`, and then select the `Sepolia` network. Click `Continue` in the bottom right and then click on `Create Endpoint`. Copy the link given to you in `HTTP Provider` and add it to the `.env` file below for `QUICKNODE_HTTP_URL`.
 
-> NOTE: If you previously set up a Goerli Endpoint on Quicknode during the Freshman Track, you can use the same URL as before. No need to delete it and set up a new one.
+> NOTE: If you previously set up a Sepolia Endpoint on Quicknode during the Freshman Track, you can use the same URL as before. No need to delete it and set up a new one.
 
 To get your private key, you need to export it from Metamask. Open Metamask, click on the three dots, click on `Account Details` and then `Export Private Key`. MAKE SURE YOU ARE USING A TEST ACCOUNT THAT DOES NOT HAVE MAINNET FUNDS FOR THIS. Add this Private Key below in your `.env` file for `PRIVATE_KEY` variable.
 
@@ -220,7 +220,7 @@ QUICKNODE_HTTP_URL="add-quicknode-http-provider-url-here"
 PRIVATE_KEY="add-the-private-key-here"
 ```
 
-Let's deploy the contract to the `goerli` network. Create a new file (or replace the existing default file) named `deploy.js` under the `scripts` folder.
+Let's deploy the contract to the `Sepolia` network. Create a new file (or replace the existing default file) named `deploy.js` under the `scripts` folder.
 
 Now we will write some code to deploy the contract in `deploy.js` file.
 
@@ -275,7 +275,7 @@ const CRYPTO_DEVS_NFT_CONTRACT_ADDRESS = "address-of-the-nft-contract";
 module.exports = { CRYPTO_DEVS_NFT_CONTRACT_ADDRESS };
 ```
 
-Now open the `hardhat.config.js` file, we'll use the `goerli` network here so that we can deploy our contract to the Goerli network. Replace all the lines in the `hardhat.config.js` file with the given below lines
+Now open the `hardhat.config.js` file, we'll use the `sepolia` network here so that we can deploy our contract to the Sepolia network. Replace all the lines in the `hardhat.config.js` file with the given below lines
 
 ```js
 require("@nomicfoundation/hardhat-toolbox");
@@ -287,7 +287,7 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 module.exports = {
   solidity: "0.8.4",
   networks: {
-    goerli: {
+    sepolia: {
       url: QUICKNODE_HTTP_URL,
       accounts: [PRIVATE_KEY],
     },
@@ -304,7 +304,7 @@ Compile the contract, open up a terminal pointing to the `hardhat-tutorial` dire
 Execute this command in the same directory to deploy the contract:
 
 ```bash
-  npx hardhat run scripts/deploy.js --network goerli
+  npx hardhat run scripts/deploy.js --network sepolia
 ```
 
 Save the CryptoDevToken Contract Address that was printed to your terminal in your notepad. You will need it later in the tutorial.
@@ -690,11 +690,11 @@ export default function Home() {
     const provider = await web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
 
-    // If user is not connected to the Goerli network, let them know and throw an error
+    // If user is not connected to the Sepolia network, let them know and throw an error
     const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 5) {
-      window.alert("Change the network to Goerli");
-      throw new Error("Change network to Goerli");
+    if (chainId !== 11155111) {
+      window.alert("Change the network to Sepolia");
+      throw new Error("Change network to Sepolia");
     }
 
     if (needSigner) {
@@ -727,7 +727,7 @@ export default function Home() {
       // Assign the Web3Modal class to the reference object by setting it's `current` value
       // The `current` value is persisted throughout as long as this page is open
       web3ModalRef.current = new Web3Modal({
-        network: "goerli",
+        network: "sepolia",
         providerOptions: {},
         disableInjectedProvider: false,
       });

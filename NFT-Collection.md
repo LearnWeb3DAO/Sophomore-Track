@@ -226,9 +226,9 @@ npm install dotenv
 
 Now create a `.env` file in the `hardhat-tutorial` folder and add the following lines. Follow the instructions below.
 
-Go to [Quicknode](https://www.quicknode.com/?utm_source=learnweb3&utm_campaign=generic&utm_content=sign-up&utm_medium=learnweb3) and sign up for an account. If you already have an account, log in. Quicknode is a node provider that lets you connect to various different blockchains. We will be using it to deploy our contract through Hardhat. After creating an account, `Create an endpoint` on Quicknode, select `Ethereum`, and then select the `Goerli` network. Click `Continue` in the bottom right and then click on `Create Endpoint`. Copy the link given to you in `HTTP Provider` and add it to the `.env` file below for `QUICKNODE_HTTP_URL`.
+Go to [Quicknode](https://www.quicknode.com/?utm_source=learnweb3&utm_campaign=generic&utm_content=sign-up&utm_medium=learnweb3) and sign up for an account. If you already have an account, log in. Quicknode is a node provider that lets you connect to various different blockchains. We will be using it to deploy our contract through Hardhat. After creating an account, `Create an endpoint` on Quicknode, select `Ethereum`, and then select the `Sepolia` network. Click `Continue` in the bottom right and then click on `Create Endpoint`. Copy the link given to you in `HTTP Provider` and add it to the `.env` file below for `QUICKNODE_HTTP_URL`.
 
-> NOTE: If you previously set up a Goerli Endpoint on Quicknode during the Freshman Track, you can use the same URL as before. No need to delete it and set up a new one.
+> NOTE: If you previously set up a Sepolia Endpoint on Quicknode during the Freshman Track, you can use the same URL as before. No need to delete it and set up a new one.
 
 To get your private key, you need to export it from Metamask. Open Metamask, click on the three dots, click on `Account Details` and then `Export Private Key`. MAKE SURE YOU ARE USING A TEST ACCOUNT THAT DOES NOT HAVE MAINNET FUNDS FOR THIS. Add this Private Key below in your `.env` file for `PRIVATE_KEY` variable.
 
@@ -238,7 +238,7 @@ QUICKNODE_HTTP_URL="add-quicknode-http-provider-url-here"
 PRIVATE_KEY="add-the-private-key-here"
 ```
 
-Let's deploy the contract to the `goerli` network. Create a new file, or replace the default file, named `deploy.js` under the `scripts` folder
+Let's deploy the contract to the `sepolia` network. Create a new file, or replace the default file, named `deploy.js` under the `scripts` folder
 
 Let's write some code to deploy the contract in `deploy.js` file.
 
@@ -294,7 +294,7 @@ const METADATA_URL = "https://nft-collection-sneh1999.vercel.app/api/";
 module.exports = { WHITELIST_CONTRACT_ADDRESS, METADATA_URL };
 ```
 
-Now open the `hardhat.config.js` file, we'll set-up the `goerli` network here so that we can deploy our contract to the Goerli network. Replace all the lines in the `hardhat.config.js` file with the given below lines
+Now open the `hardhat.config.js` file, we'll set-up the `sepolia` network here so that we can deploy our contract to the Sepolia network. Replace all the lines in the `hardhat.config.js` file with the given below lines
 
 ```js
 require("@nomicfoundation/hardhat-toolbox");
@@ -306,7 +306,7 @@ const PRIVATE_KEY = process.env.PRIVATE_KEY;
 module.exports = {
   solidity: "0.8.4",
   networks: {
-    goerli: {
+    sepolia: {
       url: QUICKNODE_HTTP_URL,
       accounts: [PRIVATE_KEY],
     },
@@ -323,7 +323,7 @@ npx hardhat compile
 To deploy, open up a terminal pointing at `hardhat-tutorial` directory and execute this command
 
 ```bash
-npx hardhat run scripts/deploy.js --network goerli
+npx hardhat run scripts/deploy.js --network sepolia
 ```
 
 Save the Crypto Devs Contract Address that was printed on your terminal in your notepad, you would need it further down in the tutorial.
@@ -665,11 +665,11 @@ export default function Home() {
     const provider = await web3ModalRef.current.connect();
     const web3Provider = new providers.Web3Provider(provider);
 
-    // If user is not connected to the Goerli network, let them know and throw an error
+    // If user is not connected to the Sepolia network, let them know and throw an error
     const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 5) {
-      window.alert("Change the network to Goerli");
-      throw new Error("Change network to Goerli");
+    if (chainId !== 11155111) {
+      window.alert("Change the network to Sepolia");
+      throw new Error("Change network to Sepolia");
     }
 
     if (needSigner) {
@@ -688,7 +688,7 @@ export default function Home() {
       // Assign the Web3Modal class to the reference object by setting it's `current` value
       // The `current` value is persisted throughout as long as this page is open
       web3ModalRef.current = new Web3Modal({
-        network: "goerli",
+        network: "sepolia",
         providerOptions: {},
         disableInjectedProvider: false,
       });
@@ -891,11 +891,11 @@ Open your `hardhat-tutorial/constants` folder and inside your `index.js` file, r
 Save the file and open up a new terminal pointing to `hardhat-tutorial` folder and deploy a new contract
 
 ```bash
-  npx hardhat run scripts/deploy.js --network goerli
+  npx hardhat run scripts/deploy.js --network sepolia
 ```
 
 Save the new NFT contract address to a notepad as we will need it later. Open up "my-app/constants" folder and inside the `index.js` file replace the old NFT contract address with the new one
 
-Push all the code to github and wait for Vercel to deploy the new code. After vercel has deployed your code, open up your website and mint an NFT. After your transaction gets successful, in your browser open up this link by replacing `your-nft-contract-address` with the address of your NFT contract (https://testnets.opensea.io/assets/goerli/your-nft-contract-address/1)
+Push all the code to github and wait for Vercel to deploy the new code. After vercel has deployed your code, open up your website and mint an NFT. After your transaction gets successful, in your browser open up this link by replacing `your-nft-contract-address` with the address of your NFT contract (https://testnets.opensea.io/assets/sepolia/your-nft-contract-address/1)
 
 Your NFT is now available on Opensea 🚀 🥳 Share your Opensea link with everyone on discord :) and spread happiness.

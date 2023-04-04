@@ -427,17 +427,17 @@ fallback() external payable {}
 
 ### 🔮 Deploying our Contract
 
-Now that we have written both our contracts, let's deploy them to the [Goerli Testnet](https://goerli.etherscan.io). Ensure you have some ETH on the Goerli Testnet.
+Now that we have written both our contracts, let's deploy them to the [Sepolia Testnet](https://sepolia.etherscan.io). Ensure you have some ETH on the Sepolia Testnet.
 
-Let's create the configuration to deploy our contract on the Goerli Network.
+Let's create the configuration to deploy our contract on the Sepolia Network.
 
 Create an `.env` file in the `backend` folder and follow the instructions below.
 
 > Note : Usually you would need to install `dotenv`, but it comes installed with the startertemp so you don't have to worry about installing it now.
 
-Go to [Quicknode](https://www.quicknode.com/?utm_source=learnweb3&utm_campaign=generic&utm_content=sign-up&utm_medium=learnweb3) and sign up for an account. If you already have an account, log in. Quicknode is a node provider that lets you connect to various different blockchains. We will be using it to deploy our contract through Hardhat. After creating an account, `Create an endpoint` on Quicknode, select `Ethereum`, and then select the `Goerli` network. Click `Continue` in the bottom right and then click on `Create Endpoint`. Copy the link given to you in `HTTP Provider` and add it to the `.env` file below for `QUICKNODE_HTTP_URL`.
+Go to [Quicknode](https://www.quicknode.com/?utm_source=learnweb3&utm_campaign=generic&utm_content=sign-up&utm_medium=learnweb3) and sign up for an account. If you already have an account, log in. Quicknode is a node provider that lets you connect to various different blockchains. We will be using it to deploy our contract through Hardhat. After creating an account, `Create an endpoint` on Quicknode, select `Ethereum`, and then select the `Sepolia` network. Click `Continue` in the bottom right and then click on `Create Endpoint`. Copy the link given to you in `HTTP Provider` and add it to the `.env` file below for `QUICKNODE_HTTP_URL`.
 
-> NOTE: If you previously set up a Goerli Endpoint on Quicknode during the Freshman Track, you can use the same URL as before. No need to delete it and set up a new one.
+> NOTE: If you previously set up a Sepolia Endpoint on Quicknode during the Freshman Track, you can use the same URL as before. No need to delete it and set up a new one.
 
 To get your private key, you need to export it from Metamask. Open Metamask, click on the three dots, click on `Account Details` and then `Export Private Key`. **MAKE SURE YOU ARE USING A TEST ACCOUNT THAT DOES NOT HAVE MAINNET FUNDS FOR THIS.** 
 
@@ -499,16 +499,16 @@ const CRYPTODEVS_NFT_CONTRACT_ADDRESS =
 module.exports = { CRYPTODEVS_NFT_CONTRACT_ADDRESS };
 ```
 
-Now, let's add the Goerli Network to your Hardhat Config so we can deploy to Goerli. 
+Now, let's add the Sepolia Network to your Hardhat Config so we can deploy to Sepolia. 
 
 Open your `hardhat.config.js` file and replace the `module.exports` segment on line 31 and below with :
 
 ```js
 module.exports = {
   solidity: "0.8.9",
-  defaultNetwork: "goerli",
+  defaultNetwork: "sepolia",
   networks: {
-    goerli: {
+    sepolia: {
       url: process.env.QUICKNODE_HTTP_URL,
       accounts: [process.env.PRIVATE_KEY],
     },
@@ -534,7 +534,7 @@ Let's deploy! Execute the following command in your Terminal from the `backend` 
 npx hardhat run scripts/deploy.js
 ```
 
-> Notice we didn't run the flag `--network goerli`
+> Notice we didn't run the flag `--network sepolia`
 
 - Save the `FakeNFTMarketplace` and `CryptoDevsDAO` contract addresses that get printed in your Terminal. You will need those later.
 
@@ -542,7 +542,7 @@ npx hardhat run scripts/deploy.js
 
 Whew! So much coding!
 
-We've successfully developed and deployed our contracts to the Goerli Testnet. Now, it's time to build the Frontend interface so users can create and vote on proposals from the website.
+We've successfully developed and deployed our contracts to the Sepolia Testnet. Now, it's time to build the Frontend interface so users can create and vote on proposals from the website.
 
 Since we already have Next JS Frontend setup, we don't need to set it up manually on our own!
 
@@ -884,9 +884,9 @@ export default function Home() {
     const web3Provider = new providers.Web3Provider(provider);
 
     const { chainId } = await web3Provider.getNetwork();
-    if (chainId !== 5) {
-      window.alert("Please switch to the Goerli network!");
-      throw new Error("Please switch to the Goerli network");
+    if (chainId !== 11155111) {
+      window.alert("Please switch to the Sepolia network!");
+      throw new Error("Please switch to the Sepolia network");
     }
 
     if (needSigner) {
@@ -924,7 +924,7 @@ export default function Home() {
   useEffect(() => {
     if (!walletConnected) {
       web3ModalRef.current = new Web3Modal({
-        network: "goerli",
+        network: "sepolia",
         providerOptions: {},
         disableInjectedProvider: false,
       });
