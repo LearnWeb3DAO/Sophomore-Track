@@ -345,7 +345,11 @@ To create this `my-app`, in the terminal point to NFT-Collection folder and type
   npx create-next-app@latest
 ```
 
-and press `enter` for all the questions, except for the question on "Use App Router (recommended)?". Select 'No' when asked.
+You will be prompted with questions. Follow the image below to answer the questions accordingly. 
+
+![image](https://user-images.githubusercontent.com/32049495/236994121-bdea21fe-3afc-4c33-b736-806585d5df34.png)
+
+.
 
 Now to run the app, execute these commands in the terminal
 
