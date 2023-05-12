@@ -140,7 +140,7 @@ function Card({name, job}) {
 
 The plain HTML example reused the same code three times, even though the only thing that actually changed was just the name of the person and their job title.
 
-In JSX, we can abstract away each `Card` as a component, which takes certain data from it's parent component (in this case, `Cards`). parent component passes data to the child through HTML-like attributes (`name="Alice"`), and the child accesses their values like a JS function receiving a JS object as an argument. The `Card` component can then return HTML with variable data inside it depending on what it received from the parent.
+In JSX, we can abstract away each `Card` as a component, which takes certain data from it's parent component (in this case, `Cards`). Parent component passes data to the child through HTML-like attributes (`name="Alice"`), and the child accesses their values like a JS function receiving a JS object as an argument. The `Card` component can then return HTML with variable data inside it depending on what it received from the parent.
 
 <Quiz questionId="febb9535-244f-4836-abd2-8aa06351f8a2" />
 
