@@ -114,7 +114,7 @@ const hre = require("hardhat");
 
 async function main() {
   /*
-  A ContractFactory in ethers.js is an abstraction used to deploy new smart contracts,
+  DeployContract in ethers.js is an abstraction used to deploy new smart contracts,
   so whitelistContract here is a factory for instances of our Whitelist contract.
   */
   // here we deploy the contract
