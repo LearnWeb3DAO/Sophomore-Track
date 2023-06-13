@@ -110,24 +110,22 @@ contract Whitelist {
 We will deploy the contract to the `goerli` network. Create a new file, or replace the default file named `deploy.js` under the `scripts` folder. Now we will write some code to deploy the contract in `deploy.js` file.
 
 ```js
-const { ethers } = require("hardhat");
+const hre = require("hardhat");
 
 async function main() {
   /*
   A ContractFactory in ethers.js is an abstraction used to deploy new smart contracts,
   so whitelistContract here is a factory for instances of our Whitelist contract.
   */
-  const whitelistContract = await ethers.getContractFactory("Whitelist");
-
   // here we deploy the contract
-  const deployedWhitelistContract = await whitelistContract.deploy(10);
-  // 10 is the Maximum number of whitelisted addresses allowed
+const whitelistContract = await hre.ethers.deployContract("Whitelist", [10]);
+// 10 is the Maximum number of whitelisted addresses allowed
 
-  // Wait for it to finish deploying
-  await deployedWhitelistContract.deployed();
+// wait for the contract to deploy
+await whitelistContract.waitForDeployment();
 
-  // print the address of the deployed contract
-  console.log("Whitelist Contract Address:", deployedWhitelistContract.address);
+// print the address of the deployed contract
+console.log("Whitelist Contract Address:", whitelistContract.target);
 }
 
 // Call the main function and catch if there is any error
