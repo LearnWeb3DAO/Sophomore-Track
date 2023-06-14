@@ -463,28 +463,18 @@ Then let's write the following below line 31 inside the `main()` function :
 
 ```js
   // Deploy the FakeNFTMarketplace contract first
-  const FakeNFTMarketplace = await ethers.getContractFactory(
-    "FakeNFTMarketplace"
-  );
-  const fakeNftMarketplace = await FakeNFTMarketplace.deploy();
-  await fakeNftMarketplace.deployed();
+  const FakeNFTMarketplace = await hre.ethers.deployContract("FakeNFTMarketplace");
 
-  console.log("FakeNFTMarketplace deployed to: ", fakeNftMarketplace.address);
+  console.log("FakeNFTMarketplace deployed to: ", FakeNFTMarketplace.target);
 
   // Now deploy the CryptoDevsDAO contract
-  const CryptoDevsDAO = await ethers.getContractFactory("CryptoDevsDAO");
-  const cryptoDevsDAO = await CryptoDevsDAO.deploy(
-    fakeNftMarketplace.address,
-    CRYPTODEVS_NFT_CONTRACT_ADDRESS,
-    {
-      // This assumes your metamask account has at least 1 ETH in its account
-      // Change this value as you want
-      value: ethers.utils.parseEther("1"),
-    }
+  const CryptoDevsDAO = await hre.ethers.deployContract(
+    "CryptoDevsDAO",
+    [FakeNFTMarketplace.target, CRYPTODEVS_NFT_CONTRACT_ADDRESS],
+    { value: ethers.parseEther("1") }
   );
-  await cryptoDevsDAO.deployed();
 
-  console.log("CryptoDevsDAO deployed to: ", cryptoDevsDAO.address); 
+  console.log("CryptoDevsDAO deployed to: ", CryptoDevsDAO.target);
 ```
 
 As you may have noticed, `deploy.js` imports a variable called `CRYPTODEVS_NFT_CONTRACT_ADDRESS` from a file named `constants`. Let's make that. 
