@@ -535,7 +535,7 @@ Let's deploy the contract to `goerli` network. Create a new file, or replace the
 Now we would write some code to deploy the contract in `deploy.js` file.
 
 ```js
-const { ethers } = require("hardhat");
+const hre = require("hardhat");
 require("dotenv").config({ path: ".env" });
 const { CRYPTO_DEV_TOKEN_CONTRACT_ADDRESS } = require("../constants");
 
@@ -546,7 +546,7 @@ async function main() {
   so exchangeContract here is a factory for instances of our Exchange contract.
   */
   // here we deploy the contract
- const exchangeContract = await ethers.deployContract("Exchange", [
+ const exchangeContract = await hre.ethers.deployContract("Exchange", [
    cryptoDevTokenAddress,
  ]);
 
