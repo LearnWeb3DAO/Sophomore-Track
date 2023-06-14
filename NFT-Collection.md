@@ -243,7 +243,7 @@ Let's deploy the contract to the `goerli` network. Create a new file, or replace
 Let's write some code to deploy the contract in `deploy.js` file.
 
 ```js
-const { ethers } = require("hardhat");
+const hre = require("hardhat");
 require("dotenv").config({ path: ".env" });
 const { WHITELIST_CONTRACT_ADDRESS, METADATA_URL } = require("../constants");
 
