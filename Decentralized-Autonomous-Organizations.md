@@ -464,7 +464,7 @@ Then let's write the following below line 31 inside the `main()` function :
 ```js
   // Deploy the FakeNFTMarketplace contract first
   const FakeNFTMarketplace = await hre.ethers.deployContract("FakeNFTMarketplace");
-
+  await FakeNFTMarketplace.waitForDeployment();
   console.log("FakeNFTMarketplace deployed to: ", FakeNFTMarketplace.target);
 
   // Now deploy the CryptoDevsDAO contract
@@ -473,7 +473,7 @@ Then let's write the following below line 31 inside the `main()` function :
     [FakeNFTMarketplace.target, CRYPTODEVS_NFT_CONTRACT_ADDRESS],
     { value: ethers.parseEther("1") }
   );
-
+   await CryptoDevsDAO.waitForDeployment();
   console.log("CryptoDevsDAO deployed to: ", CryptoDevsDAO.target);
 ```
 
