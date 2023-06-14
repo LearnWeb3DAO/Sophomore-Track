@@ -225,7 +225,7 @@ Let's deploy the contract to the `goerli` network. Create a new file (or replace
 Now we will write some code to deploy the contract in `deploy.js` file.
 
 ```js
-const { ethers } = require("hardhat");
+const hre = require("hardhat");
 require("dotenv").config({ path: ".env" });
 const { CRYPTO_DEVS_NFT_CONTRACT_ADDRESS } = require("../constants");
 
@@ -234,24 +234,23 @@ async function main() {
   const cryptoDevsNFTContract = CRYPTO_DEVS_NFT_CONTRACT_ADDRESS;
 
   /*
-    A ContractFactory in ethers.js is an abstraction used to deploy new smart contracts,
+    DeployContract in ethers.js is an abstraction used to deploy new smart contracts,
     so cryptoDevsTokenContract here is a factory for instances of our CryptoDevToken contract.
     */
-  const cryptoDevsTokenContract = await ethers.getContractFactory(
-    "CryptoDevToken"
-  );
+ // here we deploy the contract
+const cryptoDevsTokenContract = await hre.ethers.deployContract(
+  "CryptoDevToken",
+  [cryptoDevsNFTContract]
+);
 
-  // deploy the contract
-  const deployedCryptoDevsTokenContract = await cryptoDevsTokenContract.deploy(
-    cryptoDevsNFTContract
-  );
+// wait for the contract to deploy
+await cryptoDevsTokenContract.waitForDeployment();
 
-  await deployedCryptoDevsTokenContract.deployed();
-  // print the address of the deployed contract
-  console.log(
-    "Crypto Devs Token Contract Address:",
-    deployedCryptoDevsTokenContract.address
-  );
+// print the address of the deployed contract
+console.log(
+  "Crypto Devs Token Contract Address:",
+  cryptoDevsTokenContract.target
+);
 }
 
 // Call the main function and catch if there is any error
