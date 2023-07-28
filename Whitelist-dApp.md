@@ -205,6 +205,20 @@ npx create-next-app@latest
 
 and press `enter` for all the questions. Choose `Javascript` instead of `Typescript` when asked.
 
+The `create-next-app` tool also initializes a Git repo when it sets up the project. However, since our parent directory `Whitelist-Dapp` will soon become a Git repo as well (when deploying the dApp), we don't want to keep the `my-app` folder as a separate Git repo to avoid having one Git repo inside another Git repo (Git submodules). So let's remove that git repo.
+
+Run the following command in your terminal:
+
+```
+# Linux / macOS
+cd my-app
+rm -rf .git
+
+# Windows
+cd my-app
+rmdir /s /q .git
+```
+
 Your folder structure should look something like
 
 ```
@@ -213,10 +227,9 @@ Your folder structure should look something like
     - my-app
 ```
 
-Now to run the app, execute these commands in the terminal
+Now to run the app, execute this command in the terminal
 
 ```
-cd my-app
 npm run dev
 ```
 
