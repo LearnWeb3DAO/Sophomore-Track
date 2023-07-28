@@ -45,16 +45,20 @@ cd Whitelist-Dapp
 
 Then, in Whitelist-Dapp folder, we will set up a Hardhat project
 
+> Note : We install Hardhat v2.14.0 specifically since the new v2.15.0 will install new hardhat-toolbox v3 that has breaking changes to the code.
+
 ```bash
 mkdir hardhat-tutorial
 cd hardhat-tutorial
 npm init --yes
-npm install --save-dev hardhat
+npm install --save-dev --save-exact hardhat@2.14.0
 ```
 If you are a Windows User, you'll have to add one more dependency. It is given below:
 
+> Note : We install v2 specifically since the new v3 has breaking changes to the code.
+
 ```bash 
-npm install --save-dev @nomicfoundation/hardhat-toolbox
+npm install --save-dev @nomicfoundation/hardhat-toolbox@2
 ```
 
 In the same directory where you installed Hardhat run:
@@ -199,8 +203,10 @@ To develop the website we will use [React](https://reactjs.org/) and [Next Js](h
 
 First, You will need to create a new `next` app. To create this `next-app`, in the terminal point to Whitelist-Dapp folder and type
 
+> Note : We install v12 specifically since the new v13 has breaking changes to the code.
+
 ```bash
-npx create-next-app@latest
+npx create-next-app@12
 ```
 
 and press `enter` for all the questions. Choose `Javascript` instead of `Typescript` when asked.
